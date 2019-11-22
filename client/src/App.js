@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Router, Switch } from "react-router-dom"
 
 const styles = {
   videoStyle: {
