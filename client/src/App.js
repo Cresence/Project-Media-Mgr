@@ -1,38 +1,26 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter as Router, Router, Switch } from "react-router-dom"
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Nav from "./components/Nav/Nav"
+import Footer from "./components/Footer/index"
+import Header from "./components/Header/Header"
+import Home from "./pages/Home"
+import NoMatch from "./pages/NoMatch"
+import "./App.css";
 
-const styles = {
-  videoStyle: {
-    padding:"2px 0px 4px", 
-    display:"block", 
-    width:"345px", 
-    fontWeight:"normal", 
-    fontSize:"10px", 
-    textDecoration:"underline"
-  }
-}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <br/>
-        <iframe id="video" src="https://player.twitch.tv/?autoplay=false&video=v503767319" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe><a href="https://www.twitch.tv/videos/503767319?tt_content=text_link&tt_medium=vod_embed" style={styles.videoStyle}
-      ></a>
-      </header>
-    </div>
+    <Router>
+      <div className="outer-container-box">
+      <Nav />
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route component={NoMatch} />
+      </Switch>
+      <Footer />
+      </div>
+    </Router>
   );
 }
 
