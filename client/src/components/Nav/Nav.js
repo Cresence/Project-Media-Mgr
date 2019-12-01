@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "../../react-auth0-spa"
 
-function Nav() {
+const Nav = () => {
+  const {isAuthenticated, loginWithRedirect, logout, loginWithPopup } = useAuth0();
+
+
     return (
       <>
     <div className="container">
@@ -9,7 +13,7 @@ function Nav() {
   <div className="row">
     <div className="col-sm-8"> 
         <Link id="logo" to="/">
-        <h1>HeadNerdsInCharge</h1>
+        <h1>H.N.I.C.</h1>
         {/* <img src="images/logo.png" width="150px" alt="Logo"/> */}
         </Link>
       
@@ -37,19 +41,22 @@ function Nav() {
     <div className="collapse navbar-collapse" id="collapsibleNavbar">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <a className="nav-link" href="/popular" id="episodes">Episodes</a>
+          <Link className="nav-link" href="/episodes">Episodes</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/top_rated" id="top_movi">Top Rated Movies</a>
+          <Link className="nav-link" href="/api/all">Data.JSON</Link>
         </li>    
       </ul>
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <a className="nav-link"  data-toggle="modal" data-target="#signupFormModal">Sign-Up</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link"  data-toggle="modal" data-target="#loginFormModal">Login</a>
-        </li>    
+        <li className="nav-item"> 
+          {!isAuthenticated && (
+            <Link className="nav-link" onClick={() => loginWithRedirect({})}>Sign Up / Log in</Link>
+          )}
+      </li>
+      
+      <li className="nav-item"> 
+      {isAuthenticated && <Link className="nav-link" onClick={() => logout()}>Log out</Link>}
+      </li>
       </ul>
     </div>
   </div>  

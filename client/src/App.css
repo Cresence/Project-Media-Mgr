@@ -27,7 +27,7 @@
   min-height: 45px;
 }
 body {
-  background-color: #525252;
+  background-color: #000;
   /* background-image: url(../images/star-img.gif); */
   background-attachment: fixed;
   color: #fff;
@@ -97,7 +97,7 @@ h1, h2, h3, h4, h5, h6, strong{
 }
 .image-box h5{
   background-color: #fff;
-  color: #ff697d;
+  color: #d61c35;
   font-size: 1rem;
   padding: 10px;
   min-height: 58px;
@@ -105,16 +105,16 @@ h1, h2, h3, h4, h5, h6, strong{
 }
 .btn-theme{
   color: #fff;
-  background-color: #ff5757;
-  background-image: linear-gradient(to right,#ff5757 , #bd00de);
+  background-color: #d61c35;
+  background-image: linear-gradient(to right,(#d61c35 , #282c34));
   border: none;
   border-radius: 30px;
   margin-bottom: 10px;
 }
 .btn-theme:hover, .btn-theme:focus, .btn-theme:active{
   color:#fff;
-  background-color: #bd00de;
-  background-image: linear-gradient(to right , #bd00de, #ff5757);
+  /* background-color: #000; */
+  background-image: linear-gradient(to right , #d61c35 , #282c34);
   border-color:#d61c35;
   box-shadow: 5px 3px 0.5px #fff;
   -webkit-animation: swing 1s ease;
@@ -143,14 +143,15 @@ button:focus{
   width: 100%;
   min-height: 300px;
   position: relative;
-  background: #ff697d;
-  background: linear-gradient(to right,#ff5757 , #bd00de);
+  background: #d61c35;
+  background: linear-gradient(to right,(#d61c35 , #282c34));
   padding: 3px;
   object-fit: cover;
 }
 nav.bg-dark {
-  background-color: #ff697d !important;
-  background-image: linear-gradient(to right, #ff5757 , #bd00de);
+  color: #d61c35;
+  background: -webkit-linear-gradient(#d61c35 , #282c34);
+
 }
 .modal-content{
   color:#000;
@@ -160,8 +161,8 @@ nav.bg-dark {
   margin-bottom: 0rem;
 }
 .modal-content h4{
-  color:#ff697d;
-  background: -webkit-linear-gradient(#ff5757 , #bd00de);
+  color:#d61c35;
+  background: -webkit-linear-gradient(#d61c35 , #282c34);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
@@ -176,7 +177,10 @@ nav.bg-dark {
   text-decoration: none;
 }
 #logo h1{
-  color: #ff697d;
+  color: #d61c35;
+  background: -webkit-linear-gradient(#d61c35 , #282c34);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Fixes dropdown menus placed on the right side */
@@ -210,8 +214,8 @@ nav.bg-dark {
   display: block;
   width: 100%;
   height: 5px;
-  background-color: #ff697d;
-  background-image: linear-gradient(to right, #ff5757 , #bd00de);
+  background-color: #d61c35;
+  background-image: linear-gradient(to right, (#d61c35 , #282c34));
   position: relative;
   top: -1rem;
 }
@@ -225,18 +229,18 @@ nav.bg-dark {
     border: none;
     width: 50px;
     color: #fff;
-    background-color: #ff697d;
-    background-image: linear-gradient(to right, #ff5757 , #bd00de);
+    background-color: #d61c35;
+    background-image: linear-gradient(to right, #d61c35 , #282c34);
 }
 .movie-description h2,.movie-description strong {
-    color: #ff697d;
-    background: -webkit-linear-gradient(#ff5757 , #bd00de);
+    color: #d61c35;
+    background: -webkit-linear-gradient(#d61c35 , #282c34);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 .movie-trailer, .movie-trailer:hover{
-  color: #ff697d;
-  background: -webkit-linear-gradient(#ff5757 , #bd00de);
+  color: #d61c35;
+  background: -webkit-linear-gradient(#d61c35 , #282c34);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-decoration: none;
@@ -245,7 +249,7 @@ nav.bg-dark {
 }
 .movie-trailer span{
   background-color: red;
-  background: -webkit-linear-gradient(#ff5757 , #bd00de);
+  background: -webkit-linear-gradient(#d61c35 , #282c34);
     /* color: #fff !important; */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -265,8 +269,8 @@ nav.bg-dark {
 }
 .img-box img{
   position: relative;
-  background: #ff697d ;
-  background: linear-gradient(to right,#ff5757 , #bd00de);
+  background: #fff ;
+  background: linear-gradient(to right,#d61c35 , #282c34);
   padding: 3px;
 }
 .search-result{
@@ -286,8 +290,8 @@ nav.bg-dark {
   box-shadow: 1px 2px 6.5px #000;
 }
 .carousel h3 span{
-  color: #ff697d;
-  background: -webkit-linear-gradient(#ff5757 , #bd00de);
+  color: #d61c35;
+  background: -webkit-linear-gradient(#d61c35 , #282c34);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -298,8 +302,8 @@ nav.bg-dark {
   box-shadow: 5px 3px 0.5px #fff;
 }
 .top-heading{
-  color: #ff697d;
-  background: -webkit-linear-gradient(#ff5757 , #bd00de);
+  color: #d61c35;
+  background: -webkit-linear-gradient(#d61c35 , #282c34);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
@@ -308,8 +312,8 @@ nav.bg-dark {
 }
 .modal-content{
   border-radius: 0px;
-  background-color: #ff697d !important;
-  background-image: linear-gradient(to right, #ff5757 , #bd00de);
+  background-color: #d61c35 !important;
+  background-image: linear-gradient(to right, #d61c35 , #282c34);
   padding: 5px;
 }
 .modal-body, .modal-footer{
@@ -330,7 +334,7 @@ nav.bg-dark {
   width: 60px;
   height: 60px;
   background-color: #f7f7f7;
-  background-image: linear-gradient(to right, #ff5757 , #bd00de);
+  background-image: linear-gradient(to right, #d61c35 , #fff, #282c34);
   color: #fff;
   padding-top: 13px;
   border-radius: 50%;

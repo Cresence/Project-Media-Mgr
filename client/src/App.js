@@ -1,8 +1,14 @@
+// Dependencies
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useAuth0 } from "./react-auth0-spa"
+
+// Components
 import Nav from "./components/Nav/Nav"
 import Footer from "./components/Footer/index"
 import Header from "./components/Header/Header"
+
+// Pages
 import Home from "./pages/Home"
 import NoMatch from "./pages/NoMatch"
 import "./App.css";
