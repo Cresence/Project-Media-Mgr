@@ -1,7 +1,7 @@
 // Dependencies
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useAuth0 } from "./react-auth0-spa"
+// import { useAuth0 } from "./react-auth0-spa"
 
 // Components
 import Nav from "./components/Nav/Nav"
@@ -16,7 +16,7 @@ import Episodes from "./pages/Episodes"
 
 
 function App() {
-  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  // const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
   return (
     <Router>
       <div className="outer-container-box">

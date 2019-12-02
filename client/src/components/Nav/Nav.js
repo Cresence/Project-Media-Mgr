@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "../../react-auth0-spa"
 
 const Nav = () => {
-  const {isAuthenticated, loginWithRedirect, logout, loginWithPopup } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
 
     return (
@@ -50,12 +50,12 @@ const Nav = () => {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item"> 
           {!isAuthenticated && (
-            <Link className="nav-link" onClick={() => loginWithRedirect({})}>Sign Up / Log in</Link>
+            <Link className="nav-link" to="#" onClick={() => loginWithRedirect({})}>Sign Up / Log in</Link>
           )}
       </li>
       
       <li className="nav-item"> 
-      {isAuthenticated && <Link className="nav-link" onClick={() => logout()}>Log out</Link>}
+      {isAuthenticated && <Link to="#" className="nav-link" onClick={() => logout()}>Log out</Link>}
       </li>
       </ul>
     </div>

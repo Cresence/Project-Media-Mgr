@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class Home extends Component {
 
@@ -22,8 +21,6 @@ class Home extends Component {
                                 <h1 className="top-heading">Placeholder Heading</h1>
                             </div>
                         </div>
-                        {/* <div className="row movie_box"></div>
-                        <div className="row now_playing_movies_box"></div> */}
                     </div>
                 </div>
                 </>
