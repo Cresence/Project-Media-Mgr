@@ -41,10 +41,10 @@ const Nav = () => {
     <div className="collapse navbar-collapse" id="collapsibleNavbar">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <Link className="nav-link" href="/episodes">Episodes</Link>
+          <Link className="nav-link" to="/episodes">Episodes</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" href="/api/all">Data.JSON</Link>
+          <Link className="nav-link" to="/api/all">Data.JSON</Link>
         </li>    
       </ul>
       <ul className="navbar-nav ml-auto">

@@ -12,9 +12,11 @@ import Header from "./components/Header/Header"
 import Home from "./pages/Home"
 import NoMatch from "./pages/NoMatch"
 import "./App.css";
+import Episodes from "./pages/Episodes"
 
 
 function App() {
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
   return (
     <Router>
       <div className="outer-container-box">
@@ -22,6 +24,7 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/episodes" component={Episodes} />
         <Route component={NoMatch} />
       </Switch>
       <Footer />
