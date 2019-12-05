@@ -1,47 +1,56 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-function test() {
-    return ( 
-    <div class="modal fade show" id="signupFormModal" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      {/* <!-- Modal body --> */}
-      <div class="modal-body">
-        <div class="text-center top-icon">
-          <span>
-            <i class="fa fa-user-plus fa-spin-hover" aria-hidden="true"></i>
-          </span> 
-        </div>
-        <h4 class="text-center">Sign-Up Form </h4>
-        <form class="create-form">
-        <div class="form-group">
-          <label for="email">Email Id :</label>
-          <input type="text" id="signup-email" class="form-control" />
-        </div>
+const movies = [
+    "The Matrix",
+    "The Notebook",
+    "Mr. Nobody",
+    "The Lion King",
+    "Avenger",
+    "Star Wars",
+    "Hostel",
+    "300",
+    "Creed",
+    "Fight Club",
+    "Tangled",
+    "Night out"
+  ];
 
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="signup-password" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="password">Confirm Password:</label>
-          <input type="password" id="signup-confirmPassword" class="form-control" />
-        </div>
-  
-        <button type="submit" id="signup-btn" class="btn btn-theme">Register Now</button>
-        <button type="submit" id="signup-gmail-btn" class="btn btn-theme">
-          <i class="fa fa-google-plus" aria-hidden="true"></i> Sign-Up With Gmail</button>
-          </form>
-      </div>
-      {/* <!-- Modal footer --> */}
-      <div class="modal-footer">
-        <button type="button" class="btn btn-theme" data-dismiss="modal">Close</button>
-      </div>
-      
-    </div>
-  </div>
-</div>
-    )
-};
+  const result = () => {
+    for (let i = 0; i < movies.length; i++) {
+      let queryURL =
+      "https://www.omdbapi.com/?t=" + movies[i] + "&apikey=trilogy";
+
+       return axios.get(queryURL)
+  }
+
+function Test() {
+    for (let i = 0; i < movies.length; i++) {
+        let queryURL =
+        "https://www.omdbapi.com/?t=" + movies[i] + "&apikey=trilogy";
+
+         return axios.get(queryURL)
+            .then(response => {
+                const result = <div>
+                    <div className="image-box col-sm-6 col-md-3">
+                        <div className="poster-box">
+                            <img src={response.Poster +  "' onerror=\"this.onerror=null;this.src='../images/not-found.png';\"/"} alt={`Movie Poster: ${response.Poster}`} />
+                        </div>
+                        <p className="hover-description">
+                            <span>{response.Plot}</span>
+                           </p>
+                        <h5>{response.Title}</h5>
+                        <Link to="/detail" id={response.imdbID} className="btn btn-theme more-detail">
+                            More Detail
+                        </Link>
+                        <Link id={response.imdbID} to="#" onClick={() => console.log("Saved")}>Save Movie</Link>
+                    </div>
+                </div>
+                
+            console.log(result)}
+            )
+        }
+    }
 
 export default Test

@@ -215,7 +215,7 @@ nav.bg-dark {
   width: 100%;
   height: 5px;
   background-color: #d61c35;
-  background-image: linear-gradient(to right, (#d61c35 , #282c34));
+  background-image: -webkit-linear-gradient(#d61c35 , #282c34);
   position: relative;
   top: -1rem;
 }
