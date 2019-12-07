@@ -13,10 +13,10 @@ const Nav = () => {
   <div className="row">
     <div className="col-sm-8"> 
         <Link id="logo" to="/">
-        <h1>H.N.I.C.</h1>
-        {/* <img src="images/logo.png" width="150px" alt="Logo"/> */}
+        {/* <h1>H.N.I.C.</h1> */}
+        <img id="logo" src="pub_assets/images/Banner_Logo.jpg" width="200px" alt="Logo"/>
         </Link>
-      
+      <br />
     </div>
     <div className="col-sm-4">
      

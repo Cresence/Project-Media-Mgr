@@ -126,6 +126,9 @@ h1, h2, h3, h4, h5, h6, strong{
   background-color: #df4a32;
   border-color: #df4a32;
 }
+#logo img {
+  margin-bottom: 20px;
+}
 .image-box .btn-theme{
   padding-top: 0px;
   padding-bottom: 0px;

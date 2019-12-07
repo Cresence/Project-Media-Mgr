@@ -13,6 +13,7 @@ import Home from "./pages/Home"
 import NoMatch from "./pages/NoMatch"
 import "./App.css";
 import Posts from "./pages/Posts"
+import Detail from "./pages/Detail"
 
 
 function App() {
