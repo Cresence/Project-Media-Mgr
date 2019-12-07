@@ -12,7 +12,7 @@ import Header from "./components/Header/Header"
 import Home from "./pages/Home"
 import NoMatch from "./pages/NoMatch"
 import "./App.css";
-import Episodes from "./pages/Episodes"
+import Posts from "./pages/Posts"
 
 
 function App() {
@@ -24,7 +24,8 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/episodes" component={Episodes} />
+        <Route exact path="/posts" component={Posts} />
+        <Route exact path="/posts/:id" component={Detail} />
         <Route component={NoMatch} />
       </Switch>
       <Footer />

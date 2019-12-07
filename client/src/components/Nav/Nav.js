@@ -23,7 +23,6 @@ const Nav = () => {
       <div className="input-group">
         <input type="text" className="form-control" id="search-input" placeholder="Search" />
         <button  className="search-movie" type="submit">
-        
           <i className="fa fa-search" aria-hidden="true"></i>
         </button>
       </div>
@@ -41,7 +40,7 @@ const Nav = () => {
     <div className="collapse navbar-collapse" id="collapsibleNavbar">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/episodes">Episodes</Link>
+          <Link className="nav-link" to="/posts">Posts</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/api/all">Data.JSON</Link>
