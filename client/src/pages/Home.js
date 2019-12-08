@@ -35,7 +35,6 @@ class Home extends Component {
                                 <h1 style={styles.bodyContent}>{"{ Body Content }"}</h1>
                             </div>
                         </div>
-
                         {/* End of Body Content */}
 
                         <div className="row">

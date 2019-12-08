@@ -75,7 +75,7 @@ componentDidMount() {
                                         imdbID={element.imdbID}
                                         Plot={element.Plot}
                                         Poster={element.Poster}
-                                        key={Math.floor(Math.random() *         10000000)}
+                                        key={Math.floor(Math.random() * 10000000)}
                                         />
                                         ))}
                             </div>
