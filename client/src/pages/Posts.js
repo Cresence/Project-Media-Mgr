@@ -50,12 +50,20 @@ componentDidMount() {
 
   // Render of React Components/Page
     render(){
+        const styles = {
+            bodyContent: {
+              textAlign: "center",
+              marginTop: "20px",
+              marginBottom: "20px"
+            }
+          };
+
         return (
                     <div id="home">
                         <div className="container outer-box">
                             <div className="row">
                                 <div className="col-12">
-                                    <h1     className="top-heading">Placeholder Heading</h1>
+                                    <h1 h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
                                 </div>
                             </div>
                             <div className="row movie_box">
@@ -70,6 +78,11 @@ componentDidMount() {
                                         key={Math.floor(Math.random() *         10000000)}
                                         />
                                         ))}
+                            </div>
+                            <div className="row">
+                                <div className="col-12">
+                                    <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
+                                </div>
                             </div>
                         </div>
                     </div>

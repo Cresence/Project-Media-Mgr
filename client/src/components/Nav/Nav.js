@@ -4,8 +4,6 @@ import { useAuth0 } from "../../react-auth0-spa"
 
 const Nav = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-
-
     return (
       <>
     <div className="container">

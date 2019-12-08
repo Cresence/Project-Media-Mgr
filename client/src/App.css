@@ -276,9 +276,11 @@ nav.bg-dark {
   background: linear-gradient(to right,#d61c35 , #282c34);
   padding: 3px;
 }
-.search-result{
-  /* padding:20px 0px; */
-}
+
+/* .search-result{
+  padding:20px 0px;
+} */
+
 .carousel{
   box-shadow: 1px 2px 10.5px #fd545b;
 }

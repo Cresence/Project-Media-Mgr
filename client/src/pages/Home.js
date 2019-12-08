@@ -10,6 +10,13 @@ class Home extends Component {
     };
     
     render() {
+
+        const styles = {
+            bodyContent: {
+              textAlign: "center",
+            }
+          };
+          
             return (
                 <>
                 <br/>
@@ -18,7 +25,22 @@ class Home extends Component {
             
                         <div className="row">
                             <div className="col-12">
-                                <h1 className="top-heading">Placeholder Heading</h1>
+                                <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
+                            </div>
+                        </div>
+
+                        {/* Body Content */}
+                        <div className="row">
+                            <div className="col-12">
+                                <h1 style={styles.bodyContent}>{"{ Body Content }"}</h1>
+                            </div>
+                        </div>
+
+                        {/* End of Body Content */}
+
+                        <div className="row">
+                            <div className="col-12">
+                                <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
                             </div>
                         </div>
                     </div>

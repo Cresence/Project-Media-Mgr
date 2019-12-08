@@ -17,7 +17,7 @@ function MovieCard(props){
                 <Link to={"/posts/" + imdbID} id={imdbID} className="btn btn-theme more-detail">
                     More Detail
                 </Link>
-                <Link id={imdbID} to="#" onClick={() => console.log ("Saved")} className="btn btn-theme save-movie">Save Movie</Link>
+                {/* <Link id={imdbID} to="#" onClick={() => console.log ("Saved")} className="btn btn-theme save-movie">Save Movie</Link> */}
             </div>
     )
 }
