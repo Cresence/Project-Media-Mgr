@@ -12,7 +12,7 @@ const Nav = () => {
     <div className="col-sm-8"> 
         <Link id="logo" to="/">
         {/* <h1>H.N.I.C.</h1> */}
-        <img id="logo" src="pub_assets/images/Banner_Logo.jpg" width="200px" alt="Logo"/>
+        <img id="logo" src="./pub_assets/images/Banner_Logo.jpg" width="200px" alt="Logo"/>
         </Link>
       <br />
     </div>
