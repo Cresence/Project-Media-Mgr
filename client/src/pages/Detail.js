@@ -66,7 +66,7 @@ class Detail extends Component {
                                         <i class="fa fa-play-circle fa-spin-hover" aria-hidden="true"></i>
                                     </span> 
                                 </div>
-                                <h4 class="text-center">Play Trailer </h4>
+                                <h4 class="text-center">Play Content</h4>
                                 <div class="trailer-box"></div>
                             </div>
                             {/* Modal footer  */}

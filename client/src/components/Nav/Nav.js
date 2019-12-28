@@ -1,9 +1,14 @@
 import React from "react";
+import { useAuth0 } from "../../react-auth0-wrapper";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "../../react-auth0-spa"
 
 const Nav = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const logoutWithRedirect = () =>
+    logout({
+      returnTo: window.location.origin
+    });
+  
     return (
       <>
     <div className="container">
@@ -41,6 +46,9 @@ const Nav = () => {
           <Link className="nav-link" to="/posts">Posts</Link>
         </li>
         <li className="nav-item">
+          <Link className="nav-link" to="/articles">Articles</Link>
+        </li>
+        <li className="nav-item">
           <Link className="nav-link" to="/api/all">Data.JSON</Link>
         </li>    
       </ul>
@@ -51,9 +59,17 @@ const Nav = () => {
           )}
       </li>
       
-      <li className="nav-item"> 
-      {isAuthenticated && <Link to="#" className="nav-link" onClick={() => logout()}>Log out</Link>}
-      </li>
+      {isAuthenticated && (
+        <span>
+          <li className="nav-item">
+              <Link to="/profile" className="nav-link" >Profile</Link>
+          </li>
+          <li className="nav-item">
+          <Link to="#" className="nav-link" onClick={() => logout()}>Log out</Link>
+          </li>
+        </span>
+          )}
+
       </ul>
     </div>
   </div>  
