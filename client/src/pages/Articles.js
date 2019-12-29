@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import ArticleCard from "../components/ArticleCard/ArticleCard"
 
 function Articles (){
     return (
-        <h1>Placeholder</h1>
+        <ArticleCard />
     )
 }
 

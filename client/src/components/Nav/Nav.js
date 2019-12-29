@@ -60,14 +60,14 @@ const Nav = () => {
       </li>
       
       {isAuthenticated && (
-        <span>
+        <>
           <li className="nav-item">
               <Link to="/profile" className="nav-link" >Profile</Link>
           </li>
           <li className="nav-item">
           <Link to="#" className="nav-link" onClick={() => logout()}>Log out</Link>
           </li>
-        </span>
+        </>
           )}
 
       </ul>
