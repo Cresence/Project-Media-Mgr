@@ -5,7 +5,6 @@ import { Col, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import Navadmin from "../components/Navadmin";
-import {Mainheading} from "../components/Mainheading"
 // import FileUpload from '../components/FileUpload';
 import axios from 'axios';
 import { Cloud9 } from "aws-sdk";
@@ -203,7 +202,6 @@ class NewsPost extends Component {
       <Container fluid>
         <div  className="row admin-content-box py-5">
           <Col size="md-6">
-            <Mainheading color="dark">Add Post</Mainheading>
             <div className="form-outer">
             <form>
               <label>News Title</label>
@@ -298,7 +296,6 @@ class NewsPost extends Component {
             </div>
           </Col>
           <Col size="md-6 sm-12">
-            <Mainheading color="dark">Post List</Mainheading>
             
             {this.state.posts.length ? (
               <List>

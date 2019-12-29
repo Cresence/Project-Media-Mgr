@@ -1,5 +1,5 @@
 // src/components/Profile.js
-// import Navadmin from '../components/Navadmin/index'
+import Navadmin from '../components/Navadmin/index'
 import React from "react";
 import { useAuth0 } from "../react-auth0-wrapper.js";
 
@@ -29,7 +29,7 @@ const Profile = () => {
 
   return (
     <div>
-    {/* {adminBar(keys.adminEmail.id)} */}
+    <Navadmin />
     <div className="container-fluid">
       <div  className="row admin-content-box py-5">
         <div className="col-sm-12">

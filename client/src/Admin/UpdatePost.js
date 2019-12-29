@@ -3,7 +3,6 @@ import { Col, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import API from "../utils/API";
 import Navadmin from "../components/Navadmin";
-import {Mainheading} from "../components/Mainheading"
 class Detail extends Component {
   state = {
     post: {},
@@ -55,7 +54,6 @@ class Detail extends Component {
         <div  className="row admin-content-box py-5">
           <Col size="md-3"></Col>
           <Col size="md-6">
-            <Mainheading color="dark">Update Post</Mainheading>
             <div className="form-outer">
             <form>
               <label>Update News Title</label>
