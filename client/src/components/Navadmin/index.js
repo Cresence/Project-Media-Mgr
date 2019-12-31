@@ -15,11 +15,8 @@ function Navadmin() {
     <div className="left-navigationbar">
         <ul>
           <li><Link to="/profile"><i className="fas fa-user"></i>Profile</Link></li>
-          {/* <li><Link to="/external-api">External-Api</Link></li> */}
-          <li><Link to="/admin/testimonial"><i className="fas fa-tasks"></i> Manage Testimonial</Link></li>
-          <li><Link to="/admin/news"><i className="fas fa-newspaper"></i> Manage News</Link></li>
-          <li><Link to="/admin/booking"><i className="fas fa-pen"></i> View Booking List</Link> </li>
-          {/* <li><a href="/admin"><i className="fas fa-paw"></i> Add Services</a></li> */}
+          <li><Link to="/profile"><i className="fas fa-tasks"></i> Manage Main-Page Slider (Placeholder)</Link></li>
+          <li><Link to="/admin/news"><i className="fas fa-newspaper"></i> Managa Posts</Link></li>
          
         </ul>
     </div>

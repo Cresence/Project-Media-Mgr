@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import API from "../utils/API";
+import API from "../utils/API"
 import { Link } from "react-router-dom";
 import { Col, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
@@ -7,8 +7,8 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 import Navadmin from "../components/Navadmin";
 // import FileUpload from '../components/FileUpload';
 import axios from 'axios';
-import { Cloud9 } from "aws-sdk";
-import { userInfo } from "os";
+// import { Cloud9 } from "aws-sdk";
+// import { userInfo } from "os";
 
 class NewsPost extends Component {
   state = {
@@ -76,19 +76,24 @@ class NewsPost extends Component {
 // // }
   loadImage = () => {
     API.getImages()
-    .then(({data}) => {
+    .then(({ data }) => {
       if (data) {
+
+        try {
         console.log(data[0].url)
         return (
         data[0].url,
         this.setState({ image_url: data[0].url }),
         this.setState({message : "File Uploaded Successfully", messagestatusclass: "success"})
-        )      
+        )  }  
+        
+        catch { console.log("No default file exists\n...Or something else broke involving the database.") }
         } else {
         return null;
       }
      // this.setState({ image_url: data[0].url })
-    });
+    })
+    .catch(err => console.log(err));
   };
 
   // handleClicked = () => this.state.clicked ? this.loadImage : null
