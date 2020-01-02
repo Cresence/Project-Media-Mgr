@@ -1,0 +1,76 @@
+.main-heading{
+    position: relative;
+  }
+  .main-heading h1{
+    margin-bottom: 1.5em;
+    text-align: center;
+    text-shadow: 1px 0px 1.5px #000;
+    text-transform: capitalize;
+    /* font-size: 2em; */
+  }
+  .main-heading .tile_underline {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 4.998rem;
+    height: 0.833rem;
+    left: 0;
+    right: 0;
+    bottom: -20px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .tile_underline span.tile_underline_semicircle.semicircle_1 {
+    left: 0;
+  }
+  .tile_underline span.tile_underline_semicircle.semicircle_1 {
+    background-color: #ff3d5d;
+  }
+  .tile_underline span.tile_underline_semicircle {
+    content: '';
+    width: 1.666rem;
+    height: 1.666rem;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0px -2px 3.5px #000;
+  }
+  .tile_underline span.tile_underline_semicircle.semicircle_2 {
+    background-color: #55ecff;
+  }
+  .tile_underline span.tile_underline_semicircle.semicircle_2 {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .tile_underline span.tile_underline_semicircle.semicircle_3 {
+    background-color: #ffcc68;
+  }
+  .tile_underline span.tile_underline_semicircle.semicircle_3 {
+    right: 0;
+  }
+  .main-heading  h1:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    border-top: 1px solid #f0f0f0;
+    height: 0;
+    width: 100%;
+    min-width: 2em;
+    left: 0;
+    bottom: -7px;
+    
+  }
+  .main-heading .dark{
+    color: #000b88;
+    
+  }
+  .main-heading .light{
+    color:#fff;
+    
+}
+.main-heading .light:after{
+    border-top: 1px solid #a2a2a2;
+}

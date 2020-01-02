@@ -5,13 +5,14 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const db = require("./models");
 const cloudinary = require('cloudinary');
+const bodyParser = require("body-parser");
 
 // Define Cloudinary config (dotenv)
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-});
+// cloudinary.config({
+//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+//   api_key: process.env.CLOUDINARY_API_KEY,
+//   api_secret: process.env.CLOUDINARY_API_SECRET
+// });
 
 // Define Cloudinary config
 cloudinary.config({
@@ -53,6 +54,10 @@ app.post('/upload', (req, res) => {
   }
   });
 });
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));

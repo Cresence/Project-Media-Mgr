@@ -1,14 +1,15 @@
-import React, { Component, Fragment } from "react";
-import API from "../utils/API"
+import React, { Component } from "react";
+import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import Navadmin from "../components/Navadmin";
+// import {Mainheading} from "../components/Mainheading"
 // import FileUpload from '../components/FileUpload';
 import axios from 'axios';
 // import { Cloud9 } from "aws-sdk";
-// import { userInfo } from "os";
+import { userInfo } from "os";
 
 class NewsPost extends Component {
   state = {
@@ -16,6 +17,7 @@ class NewsPost extends Component {
     news_title: "",
     category: "",
     description: "",
+    news_body: "",
     date:"",
     post_image:"",
     success:"none",
@@ -37,63 +39,21 @@ class NewsPost extends Component {
     this.loadImage();
   }
 
-//   onChangeHandler = event => {
-//     // console.log(event.target.files[0]);
-//     // const {lastModified, lastModifiedDate, name, size, type} = event.target.files[0];
-//     const img = event.target.files[0];
-//     img.src = URL.createObjectURL(img)
-//     console.log(img.src);
-//     // this.setState({
-//     //   lastModified: lastModified,
-//     //   lastModifiedDate: lastModifiedDate,
-//     //   name: name,
-//     //   size: size,
-//     //   type: type
-//     // })
-//   }
-
-// //   onClickHandler = () => {
-// //     const data = new FormData()
-// //     data.append('file', this.state.selectedFile)
-// //     // if (this.state.lastModified && this.state.lastModifiedDate && this.state.name && this.state.size && this.state.type) {
-// //     // API.postImage({
-// //     //   lastModified: this.state.lastModified,
-// //     //   lastModifiedDate: this.state.lastModifiedDate,
-// //     //   name: this.state.name,
-// //     //   size: this.state.size,
-// //     //   type: this.state.type
-// //     // })
-// //     //   .then(res => {
-// //     //     console.log(res);
-// //     //   })
-// //     //   .catch(err => console.log(err));
-// //   // }
-// //   axios.post('/img_data', data, {
-// //     // Nothing happens here?
-// //   })
-// //     .then(res => console.log(res.statusText))
-// //     .catch(err => console.log(err))
-// // }
   loadImage = () => {
     API.getImages()
-    .then(({ data }) => {
-      if (data) {
-
-        try {
-        console.log(data[0].url)
-        return (
-        data[0].url,
-        this.setState({ image_url: data[0].url }),
-        this.setState({message : "File Uploaded Successfully", messagestatusclass: "success"})
-        )  }  
-        
-        catch { console.log("No default file exists\n...Or something else broke involving the database.") }
+    .catch(err => console.log(err))
+    .then(({data}) => {
+      if (!data) {
+        return console.log("Data not found");
         } else {
-        return null;
-      }
+          return (
+          data[0].url,
+          this.setState({ image_url: data[0].url }),
+          this.setState({message : "File Uploaded Successfully", messagestatusclass: "success"})
+          )      
+        }
      // this.setState({ image_url: data[0].url })
-    })
-    .catch(err => console.log(err));
+    });
   };
 
   // handleClicked = () => this.state.clicked ? this.loadImage : null
@@ -121,12 +81,14 @@ class NewsPost extends Component {
   };
 
   handleFormSubmit = event => {
-    event.preventDefault();    
-    if (this.state.news_title && this.state.category && this.state.description && this.state.image_url) {
+    event.preventDefault(); 
+    console.log(this.state)   
+    if (this.state.news_title && this.state.category && this.state.description && this.state.image_url && this.state.clicked) {
       API.savePost({
         news_title: this.state.news_title,
         category: this.state.category,
         description: this.state.description,
+        news_body: this.state.news_body,
         image_url: this.state.image_url
       })
         .then(res => {
@@ -146,17 +108,6 @@ class NewsPost extends Component {
     this.setState({file:e.target.files[0]});
     this.setState({filename:e.target.files[0].name});
   };
-
-  // saveImage = () => {
-  //   axios.post('upload', {
-  //     name: user.name,
-  //     url: response.url
-  //   })
-  //     .then(res => {
-  //       this.setState({success:"block", danger:"none"})
-  //     })
-  //     .catch(err => console.log(err));
-  // }
   
   onSubmit = async e => {
     e.preventDefault();
@@ -177,22 +128,15 @@ class NewsPost extends Component {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(res => this.setState({image_url: res.data.url }));
-      // const { fileName, filePath } = res.data;
-      // console.log(res.data);
-      
+      }).then(res => this.setState({image_url: res.data.url }));      
       this.setState({fileName: res.data.fileName, filePath: res.data.filePath});
-      // setUploadedFile({ fileName, filePath });
       this.setState({uploadedFile: res.data.fileName + res.data.filePath});
       this.setState({message : "File Uploaded Successfully", messagestatusclass: "success"})
-      // this.setState({clicked: true});
+      this.setState({clicked: true});
     } catch(err){
       if(err){
         console.log(err)
-        // console.log("Server error")
-        //this.setState({message : "Server error", messagestatusclass: "danger"})
       }else{
-        // console.log(err.response.data.msg)
         this.setState({message : err.response.data.msg, messagestatusclass: "danger"})
       }
     }
@@ -207,6 +151,7 @@ class NewsPost extends Component {
       <Container fluid>
         <div  className="row admin-content-box py-5">
           <Col size="md-6">
+            {/* <Mainheading color="dark">Add Post</Mainheading> */}
             <div className="form-outer">
             <form>
               <label>News Title</label>
@@ -219,14 +164,25 @@ class NewsPost extends Component {
              <label>Select Category</label>
               <select className="form-control" id="category" name="category" value={this.state.category} onChange={this.handleInputChange}>
                 <option value="">Select</option>
-                <option value="Announcement">Announcement</option>
-                <option value="News">News</option>
+                <option value="Cosplay">Cosplay/Lifestyle</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Convention">Convention</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Tech/Science">Tech/Science</option>
               </select>
               <br/>
 
               <label>Description</label>
               <TextArea
                 value={this.state.description}
+                onChange={this.handleInputChange}
+                name="description"
+                placeholder=" "
+              />
+
+              <label>News Body</label>
+              <TextArea
+                value={this.state.news_body}
                 onChange={this.handleInputChange}
                 name="description"
                 placeholder=" "
@@ -254,7 +210,7 @@ class NewsPost extends Component {
             </div>
 
               
-              <Fragment>
+              <>
                 <div className='custom-file'>
                   <input
                     type='file'
@@ -283,12 +239,13 @@ class NewsPost extends Component {
               </div>: " "
               } */}
 
-              </Fragment>
+              </>
 
 
               <FormBtn onClick={this.handleFormSubmit} >
                Add Post
               </FormBtn>
+
             </form>
             <div className="alert alert-success alert-dismissible" style={{display: this.state.success}}>
               <button type="button" className="close" data-dismiss="alert">&times;</button>
@@ -301,6 +258,7 @@ class NewsPost extends Component {
             </div>
           </Col>
           <Col size="md-6 sm-12">
+            {/* <Mainheading color="dark">Post List</Mainheading> */}
             
             {this.state.posts.length ? (
               <List>
@@ -309,11 +267,12 @@ class NewsPost extends Component {
                     <h5><strong>News Title : </strong> {post.news_title}</h5>
                     <h6><strong>Category : </strong> {post.category}</h6>
                     <p><strong>Description : </strong> {post.description}</p>
+                    <p><strong>News Body : </strong> {post.news_body}</p>
                     <p><strong>Date : </strong> {post.date}</p>
                     <p className="image-url-news"><strong>Image Url : </strong><span>{post.image_url}</span></p>
 
                       
-                    <Link to={"/posts/" + post._id} className="btn btn-theme">
+                    <Link to={"/articles/" + post._id} className="btn btn-theme">
                        Update Post
                     </Link>
                     <button onClick={() => this.deletePost(post._id)} type="button" className="btn btn-theme-danger">

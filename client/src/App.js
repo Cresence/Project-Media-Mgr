@@ -43,7 +43,7 @@ function App() {
         <Route exact path="/articles" component={Articles} />
         <PrivateRoute path="/profile" component={Profile} /> 
         <PrivateRoute exact path="/admin/news" component={NewsPost} />
-        <PrivateRoute exact path="/posts/:id" component={UpdatePost} />
+        <PrivateRoute exact path="/articles/:id" component={UpdatePost} />
         <Route component={NoMatch} />
       </Switch>
       <Footer />
