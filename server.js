@@ -58,7 +58,6 @@ app.post('/upload', (req, res) => {
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

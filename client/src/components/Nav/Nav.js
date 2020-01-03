@@ -1,6 +1,8 @@
 import React from "react";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import { Link } from "react-router-dom";
+import logo from "../../assets/Banner_Logo.jpg";
+import "./style.css"
 
 const Nav = () => {
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -17,7 +19,7 @@ const Nav = () => {
     <div className="col-sm-8"> 
         <Link id="logo" to="/">
         {/* <h1>H.N.I.C.</h1> */}
-        <img id="logo" src="./pub_assets/images/Banner_Logo.jpg" width="200px" alt="Logo"/>
+        <img id="logo" src={logo} width="200px" alt="Logo"/>
         </Link>
       <br />
     </div>
