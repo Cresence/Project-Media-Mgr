@@ -5,7 +5,8 @@ import { Col, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import Navadmin from "../components/Navadmin";
-// import {Mainheading} from "../components/Mainheading"
+import { useAuth0 } from "../react-auth0-wrapper.js";
+import {Mainheading} from "../components/Mainheading"
 // import FileUpload from '../components/FileUpload';
 import axios from 'axios';
 // import { Cloud9 } from "aws-sdk";
@@ -23,6 +24,8 @@ class NewsPost extends Component {
     success:"none",
     danger:"none",
     image_url: "",
+    author: "",
+    author_photo: "",
 
     file: "",
     filename:"Choose File",
@@ -30,13 +33,12 @@ class NewsPost extends Component {
     message:"",
     messagestatus:"none",
     messagestatusclass:"",
-
-    clicked: false
   };
 
   componentDidMount() {
     this.loadPosts();
-    this.loadImage();
+    // this.loadImage();
+    this.props.userInfo ? this.setState({ author: this.props.userInfo.name, author_photo: this.props.userInfo.picture }) : console.log('User not logged in...?');
   }
 
   loadImage = () => {
@@ -72,6 +74,7 @@ class NewsPost extends Component {
       .then(res => this.loadPosts())
       .catch(err => console.log(err));
   };
+  
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -83,13 +86,15 @@ class NewsPost extends Component {
   handleFormSubmit = event => {
     event.preventDefault(); 
     console.log(this.state)   
-    if (this.state.news_title && this.state.category && this.state.description && this.state.image_url && this.state.clicked) {
+    if (this.state.news_title && this.state.category && this.state.description) {
       API.savePost({
         news_title: this.state.news_title,
         category: this.state.category,
         description: this.state.description,
         news_body: this.state.news_body,
-        image_url: this.state.image_url
+        image_url: this.state.image_url,
+        author: this.props.userInfo.name,
+        author_photo: this.props.userInfo.picture
       })
         .then(res => {
           this.setState({success:"block", danger:"none"})
@@ -128,11 +133,11 @@ class NewsPost extends Component {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(res => this.setState({image_url: res.data.url }));      
+      }).then(res => this.setState({image_url: res.data.url})); 
+
       this.setState({fileName: res.data.fileName, filePath: res.data.filePath});
       this.setState({uploadedFile: res.data.fileName + res.data.filePath});
       this.setState({message : "File Uploaded Successfully", messagestatusclass: "success"})
-      this.setState({clicked: true});
     } catch(err){
       if(err){
         console.log(err)
@@ -145,15 +150,24 @@ class NewsPost extends Component {
 
   
   render() {
+    const styles = {
+      textStyle: {
+        color: "#000000"
+      }
+    }
     return (
       <div>
       <Navadmin />
       <Container fluid>
         <div  className="row admin-content-box py-5">
           <Col size="md-6">
-            {/* <Mainheading color="dark">Add Post</Mainheading> */}
+            <Mainheading color="dark">Add Post</Mainheading>
             <div className="form-outer">
             <form>
+              <label>Current Article Photo</label>
+              <br />
+              <img src={this.state.image_url ?  this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article Photo: ${this.state.news_title}`} style={{marginBottom: "2%"}}/>
+              <br />
               <label>News Title</label>
               <Input
                 value={this.state.news_title}
@@ -184,26 +198,11 @@ class NewsPost extends Component {
               <TextArea
                 value={this.state.news_body}
                 onChange={this.handleInputChange}
-                name="description"
+                name="news_body"
                 placeholder=" "
               />
+              <br />
               <label>Upload Image</label>
-              {/* <div className="form-group">
-                <input 
-                  type="file" 
-                  className="form-control-file border" 
-                  name="post_image"
-                  value={this.state.post_image}
-                  onChange={this.handleInputChange}
-                />
-              </div> */}
-              {/* <FileUpload 
-                type={"file"}
-                name={"post_image"}
-                value={this.state.post_image}
-                onChange={this.handleInputChange}
-              /> */}
-
             <div className={`alert alert-${this.state.messagestatusclass} alert-dismissible`} style={{display: this.state.messagestatus}}>
               <button type="button" className="close" data-dismiss="alert">&times;</button>
               {this.state.message}
@@ -230,19 +229,16 @@ class NewsPost extends Component {
                 className='btn btn-primary btn-block mt-4'
                 onClick={this.onSubmit}
               />
-              
-              {/* { this.state.uploadedFile ? 
-              <div>
-                <h5 className="text-center">Image uploaded Successfully </h5>
-                <p>{this.state.fileName}</p>
-                <img  src={this.state.filePath} alt="path"/>
-              </div>: " "
-              } */}
-
               </>
 
-
-              <FormBtn onClick={this.handleFormSubmit} >
+              <br />
+              <FormBtn 
+                onClick={this.handleFormSubmit}
+                disabled={!(this.state.news_title && 
+                this.state.category &&
+                this.state.description &&
+                this.state.news_body)}
+                >
                Add Post
               </FormBtn>
 
@@ -253,23 +249,23 @@ class NewsPost extends Component {
             </div>
             <div className="alert alert-danger alert-dismissible"  style={{display: this.state.danger}}>
               <button type="button" className="close" data-dismiss="alert">&times;</button>
-              Please Complete the form before Submition 
+              Please Complete the form before Submission.
             </div>
             </div>
           </Col>
           <Col size="md-6 sm-12">
-            {/* <Mainheading color="dark">Post List</Mainheading> */}
+            <Mainheading color="dark">Post List</Mainheading>
             
             {this.state.posts.length ? (
               <List>
                 {this.state.posts.map(post => (
                 <ListItem key={post._id}>
-                    <h5><strong>News Title : </strong> {post.news_title}</h5>
-                    <h6><strong>Category : </strong> {post.category}</h6>
-                    <p><strong>Description : </strong> {post.description}</p>
-                    <p><strong>News Body : </strong> {post.news_body}</p>
-                    <p><strong>Date : </strong> {post.date}</p>
-                    <p className="image-url-news"><strong>Image Url : </strong><span>{post.image_url}</span></p>
+                    <h5 style={styles.textStyle}><strong>News Title: </strong> {post.news_title}</h5>
+                    <h6 style={styles.textStyle}><strong>Category: </strong> {post.category}</h6>
+                    <p style={styles.textStyle}><strong>Description: </strong> {post.description}</p>
+                    <p style={styles.textStyle}><strong>News Body: </strong> {post.news_body}</p>
+                    <p style={styles.textStyle}><strong>Date: </strong> {post.date.slice(0, 10)}</p>
+                    <p className="image-url-news" style={styles.textStyle}><strong>Image Url : </strong><span>{post.image_url}</span></p>
 
                       
                     <Link to={"/articles/" + post._id} className="btn btn-theme">

@@ -22,35 +22,6 @@
     overflow: hidden;
     z-index: 1;
   }
-  .tile_underline span.tile_underline_semicircle.semicircle_1 {
-    left: 0;
-  }
-  .tile_underline span.tile_underline_semicircle.semicircle_1 {
-    background-color: #ff3d5d;
-  }
-  .tile_underline span.tile_underline_semicircle {
-    content: '';
-    width: 1.666rem;
-    height: 1.666rem;
-    border-radius: 50%;
-    position: absolute;
-    bottom: 0;
-    box-shadow: 0px -2px 3.5px #000;
-  }
-  .tile_underline span.tile_underline_semicircle.semicircle_2 {
-    background-color: #55ecff;
-  }
-  .tile_underline span.tile_underline_semicircle.semicircle_2 {
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
-  .tile_underline span.tile_underline_semicircle.semicircle_3 {
-    background-color: #ffcc68;
-  }
-  .tile_underline span.tile_underline_semicircle.semicircle_3 {
-    right: 0;
-  }
   .main-heading  h1:after {
     content: ' ';
     display: block;
@@ -61,10 +32,9 @@
     min-width: 2em;
     left: 0;
     bottom: -7px;
-    
   }
   .main-heading .dark{
-    color: #000b88;
+    color: #FFF;
     
   }
   .main-heading .light{

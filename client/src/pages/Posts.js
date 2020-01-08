@@ -1,52 +1,42 @@
 // Dependencies
 
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 import MovieCard from "../components/MovieCard/MovieCard"
 
 // Predefined methods to call from local database
-// import API from "../utils/API";
+import API from "../utils/API"
 
 class Posts extends Component {
 
     state = {
-        movieData: [],
-
-        movies: [
-            "The Matrix",
-            "The Notebook",
-            "Mr. Nobody",
-            "The Lion King",
-            "Avenger",
-            "Star Wars",
-            "Hostel",
-            "300",
-            "Creed",
-            "Fight Club",
-            "Tangled",
-            "Night out"],
-
-        
+        postData: []
     };
 
 
 componentDidMount() {
-    this.getMovieData()
+    this.loadData()
 }
-  // API call using predefined inquiry, returns responses as array of objects
-  getMovieData = () => {
+
+loadData = () => {
+    API.getPosts()
+        .then(result => this.setState({ postData: result.data }))
+        .catch(err => console.log("Error loading database... \n" + err))
+}
+  // API call using predefined inquiry, returns responses as array of objects (Placeholder content)
+//   getpostData = () => {
     
-    this.state.movies.map((e, i) => {
-        let queryURL =
-      "https://www.omdbapi.com/?t=" + this.state.movies[i] + "&apikey=trilogy"
+//     this.state.movies.map((e, i) => {
+//         let queryURL =
+//       "https://www.omdbapi.com/?t=" + this.state.movies[i] + "&apikey=trilogy"
 
-        axios.get(queryURL)
-            .then(result => this.setState({ movieData: [...this.state.movieData, result.data] }));
+//         axios.get(queryURL)
+//             .then(result => this.setState({ postData: [...this.state.postData, result.data] }));
 
-            return e;
-    });
+//             return e;
+//     });
        
-  }
+//   }
 
   // Render of React Components/Page
     render(){
@@ -63,19 +53,20 @@ componentDidMount() {
                         <div className="container outer-box">
                             <div className="row">
                                 <div className="col-12">
-                                    <h1 h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
+                                    <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
                                 </div>
                             </div>
                             <div className="row movie_box">
                                     {/* Takes array of objects as arguments and convers them to JSX elements */}
 
-                                        {this.state.movieData.map(element => (
+                                        {this.state.postData.map(element => (
                                         <MovieCard
-                                        Title={element.Title}
-                                        imdbID={element.imdbID}
-                                        Plot={element.Plot}
-                                        Poster={element.Poster}
-                                        key={Math.floor(Math.random() * 10000000)}
+                                        Title={element.news_title}
+                                        imdbID={element._id}
+                                        Plot={element.description}
+                                        Poster={element.image_url}
+                                        // key={Math.floor(Math.random() * 10000000)
+                                        key={element._id ? element._id : Math.floor(Math.random() * 1000)}
                                         />
                                         ))}
                             </div>

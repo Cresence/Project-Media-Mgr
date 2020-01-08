@@ -25,11 +25,10 @@ const Profile = () => {
 //     });
 // };
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div>
-    <Navadmin />
     <div className="container-fluid">
       <div  className="row admin-content-box py-5">
         <div className="col-sm-12">

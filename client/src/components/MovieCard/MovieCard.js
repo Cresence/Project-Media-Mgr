@@ -9,12 +9,12 @@ function MovieCard(props){
     return(
             <div className="image-box col-sm-6 col-md-3">
                 <div className="poster-box">
-                    <img src={Poster +  "onerror=\"this.onerror=null;   this.src='../imagenot-found.png';\"/"} alt={`Movie Poster: ${Poster}`} />
+                    <img src={Poster ? Poster : "https://placehold.it/128x197?text=No%20Preview"} alt={`Article Photo: ${Poster}`} />
                 </div>
                 <p className="hover-description">
                     <span>{Plot}</span>
                 </p>
-                <h5>{Title}</h5>
+                <h5><strong>{Title}</strong></h5>
                 <Link to={"/posts/" + imdbID} id={imdbID} className="btn btn-theme more-detail">
                     More Detail
                 </Link>

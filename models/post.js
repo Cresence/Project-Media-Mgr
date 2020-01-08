@@ -7,7 +7,9 @@ const postSchema = new Schema({
   description: { type: String, required: true },
   news_body: { type: String, required: true },
   date: { type: Date, default: Date.now },
-  image_url: String,
+  image_url: { type: String, required: true },
+  author: { type: String, required: true },
+  author_photo: { type: String, required: true }
 });
 
 const Post = mongoose.model("Post", postSchema);

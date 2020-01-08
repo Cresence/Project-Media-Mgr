@@ -1,6 +1,4 @@
 module.exports = {
-  Post: require("./article"),
+  Post: require("./post"),
   Image: require("./image"),
-  Headline: require("./Headline"),
-  Note: require("./Note")
 };

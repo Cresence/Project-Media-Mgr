@@ -48,11 +48,8 @@ const Nav = () => {
           <Link className="nav-link" to="/posts">Posts</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/articles">Articles</Link>
+          <Link className="nav-link" to="/#">Videos Archive</Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/api/all">Data.JSON</Link>
-        </li>    
       </ul>
       <ul className="navbar-nav ml-auto">
         <li className="nav-item"> 
@@ -63,11 +60,19 @@ const Nav = () => {
       
       {isAuthenticated && (
         <>
-          <li className="nav-item">
-              <Link to="/profile" className="nav-link" >Profile</Link>
+          <li className="nav-item dropdown">
+            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              User Options
+            </Link>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <Link className="dropdown-item" to="/profile">Profile</Link>
+              <Link className="dropdown-item" to="#">Manage Front-Page Sliders</Link>
+              {/* <div className="dropdown-divider"></div> */}
+              <Link className="dropdown-item" to="/admin/news">Manage Posts</Link>
+            </div>
           </li>
           <li className="nav-item">
-          <Link to="#" className="nav-link" onClick={() => logout()}>Log out</Link>
+            <Link to="#" className="nav-link" onClick={() => logout()}>Log out</Link>
           </li>
         </>
           )}

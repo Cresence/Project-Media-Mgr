@@ -3,26 +3,46 @@ import { Col, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import API from "../utils/API";
 import Navadmin from "../components/Navadmin";
+import axios from "axios";
+import { Redirect } from 'react-router-dom';
+
 class Detail extends Component {
   state = {
-    post: {},
     news_title: "",
     category: "",
     description: "",
+    news_body: "",
     date:"",
+    post_image:"",
+    success:"none",
+    danger:"none",
+    image_url: "",
+    author: "",
+    author_photo: "",
+
+    file: "",
+    filename:"Choose File",
+    uploadedFile:"",
+    message:"",
+    messagestatus:"none",
+    messagestatusclass:"",
+
+    redirect: false
   };
   componentDidMount() {
     this.loadPosts();
-  
   }
 
   loadPosts = () => {
     API.getPost(this.props.match.params.id)
     .then(res => this.setState({ 
       news_title: res.data.news_title,
-      category: res.data.category,
-      description: res.data.description,
-      
+        category: res.data.category,
+        description: res.data.description,
+        news_body: res.data.news_body,
+        image_url: res.data.image_url,
+        author: res.data.author,
+        author_photo: res.data.author_photo
      }))
     .catch(err => console.log(err));
   }
@@ -33,6 +53,42 @@ class Detail extends Component {
     });
   };
 
+  onChangeUpload = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+    this.setState({file:e.target.files[0]});
+    this.setState({filename:e.target.files[0].name});
+  };
+
+  onSubmit = async e => {
+    e.preventDefault();
+   
+    this.setState({messagestatus: "block"});
+    const formData = new FormData();
+    formData.append('file', this.state.file );
+
+    try{
+      const res=await axios.post('/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(res => this.setState({image_url: res.data.url})); 
+
+      this.setState({fileName: res.data.fileName, filePath: res.data.filePath});
+      this.setState({uploadedFile: res.data.fileName + res.data.filePath});
+      this.setState({message : "File Uploaded Successfully", messagestatusclass: "success"})
+    } catch(err){
+      if(err){
+        console.log(err)
+      }else{
+        this.setState({message : err.response.data.msg, messagestatusclass: "danger"})
+      }
+    }    
+  }
+
+
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.news_title && this.state.category && this.state.description ) {
@@ -40,13 +96,41 @@ class Detail extends Component {
         news_title: this.state.news_title,
         category: this.state.category,
         description: this.state.description,
-        post_image: this.state.post_image,
+        news_body: this.state.news_body,
+        image_url: this.state.image_url,
+        author: this.state.author,
+        author_photo: this.state.author_photo
       })
-        .then(res =>  window.location.href='/admin/news')
+        .then(res =>  this.setState({ redirect: true }))
         .catch(err => console.log(err));
     }
   };
   render() {
+    const styles = {
+      textStyle: {
+        color: "#000000"
+      },
+      imgStyleSm: {
+        width: "250px",
+        height: "250px",
+        margin: "auto",
+        alignContent: "middle",
+        width: "50%"
+      },
+      imgStyleLg: {
+        height: "100%",
+        width: "100%",
+        margin: "auto",
+        alignContent: "left"
+      }
+    }
+
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to ='/admin/news' />;
+    }
+
     return (
       <div>
       <Navadmin />
@@ -55,41 +139,105 @@ class Detail extends Component {
           <Col size="md-3"></Col>
           <Col size="md-6">
             <div className="form-outer">
+            <label>Current Article Photo</label>
+            <br />
+            <img src={this.state.image_url ?  this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article Photo (Mini): ${this.state.news_title}`} style={styles.imgStyleSm} data-toggle="modal" data-target="#myModal" />
+            {/* Modal */}
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                {/* Modal content */}
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+      
+                  <div class="modal-body">
+                    <img src={this.state.image_url ?  this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article Photo (Full): ${this.state.news_title}`} style={styles.imgStyleLg} />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <form>
-              <label>Update News Title</label>
+              <label>News Title</label>
               <Input
                 value={this.state.news_title}
                 onChange={this.handleInputChange}
                 name="news_title"
-                placeholder="news_title"
+                placeholder="News Title (required)"
               />
-              <label>Update Category</label>
+             <label>Select Category</label>
               <select className="form-control" id="category" name="category" value={this.state.category} onChange={this.handleInputChange}>
                 <option value="">Select</option>
-                <option value="Announcement">Announcement</option>
-                <option value="News">News</option>
+                <option value="Cosplay">Cosplay/Lifestyle</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Convention">Convention</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Tech/Science">Tech/Science</option>
               </select>
               <br/>
-              {/* <Input
-                value={this.state.category}
-                onChange={this.handleInputChange}
-                name="category"
-                placeholder="category"
-              /> */}
-              <label>Update Description</label>
+
+              <label>Description</label>
               <TextArea
                 value={this.state.description}
                 onChange={this.handleInputChange}
                 name="description"
-                placeholder="Description "
+                placeholder=" "
               />
+
+              <label>News Body</label>
+              <TextArea
+                value={this.state.news_body}
+                onChange={this.handleInputChange}
+                name="news_body"
+                placeholder=" "
+              />
+
+
+              <label>Upload Image</label>
+            <div className={`alert alert-${this.state.messagestatusclass} alert-dismissible`} style={{display: this.state.messagestatus}}>
+              <button type="button" className="close" data-dismiss="alert">&times;</button>
+              {this.state.message}
+            </div>
+
               
-              <FormBtn
-                disabled={!(this.state.news_title && this.state.category && this.state.description)}
+              <>
+                <div className='custom-file'>
+                  <input
+                    type='file'
+                    className='custom-file-input'
+                    name="post_image"
+                    id='customFile'
+                    onChange={this.onChangeUpload}
+                    value={this.state.post_image}
+                  />
+                <label className='custom-file-label' htmlFor='customFile'>
+                  {this.state.filename}
+                </label>
+              </div>
+              <input
+                type='submit'
+                value='Upload'
+                className='btn btn-primary btn-block mt-4'
+                onClick={this.onSubmit}
+              />
+              </>
+
+              <br />
+              <FormBtn 
                 onClick={this.handleFormSubmit}
-              >
-               Update Post
+                disabled={!(this.state.news_title && 
+                this.state.category &&
+                this.state.description &&
+                this.state.news_body)}
+                >
+               Add Post
               </FormBtn>
+
             </form>
             </div>
           </Col>

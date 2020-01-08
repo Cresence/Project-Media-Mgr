@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import  "./style.css"
 import temp_slider from "../../assets/avengers.jpg";
 
@@ -16,28 +17,28 @@ function Header() {
       <img src={temp_slider} alt="ph1" width="1100" height="500" />
       <div className="carousel-caption">
         <h3><span>Placeholder 1</span></h3>
-        <p><a href={"/posts/tt4154796"} id="ph1" className="btn btn-theme more-posts" >See More posts</a></p>
+        <p><Link to={"/posts/tt4154796"} id="ph1" className="btn btn-theme more-posts" >See More posts</Link></p>
       </div>   
     </div>
     <div className="carousel-item">
       <img src={temp_slider} alt="ph2" width="1100" height="500" />
       <div className="carousel-caption">
         <h3><span>Placeholder 2</span></h3>
-        <p><a href={"/posts/tt4154796"} id="ph2" className="btn btn-theme more-posts">See More posts</a></p>
+        <p><Link to={"/posts/tt4154796"} id="ph2" className="btn btn-theme more-posts">See More posts</Link></p>
       </div>   
     </div>
     <div className="carousel-item">
       <img src={temp_slider} alt="ph3" width="1100" height="500" />
       <div className="carousel-caption">
         <h3><span>Placeholder 3</span></h3>
-        <p><a href={"/posts/tt4154796"} id="ph3" className="btn btn-theme more-posts">See More posts</a></p>
+        <p><Link to={"/posts/tt4154796"} id="ph3" className="btn btn-theme more-posts">See More posts</Link></p>
       </div>   
     </div>
     <div className="carousel-item">
       <img src={temp_slider} alt="ph4" width="1100" height="500" />
       <div className="carousel-caption">
         <h3><span>Placeholder 4</span></h3>
-        <p><a href={"/posts/tt4154796"} id="ph4" className="btn btn-theme more-posts">See More posts</a></p>
+        <p><Link to={"/posts/tt4154796"} id="ph4" className="btn btn-theme more-posts">See More posts</Link></p>
       </div>   
     </div>
   </div>

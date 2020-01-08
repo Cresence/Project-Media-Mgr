@@ -6,20 +6,41 @@ const PORT = process.env.PORT || 3001;
 const db = require("./models");
 const cloudinary = require('cloudinary');
 const bodyParser = require("body-parser");
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 
 // Define Cloudinary config (dotenv)
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET
-// });
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// JSON Token From Back-End API
+const jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: process.env.JWKS_URI
+}),
+audience: 'https://project-media-mgr/api',
+issuer: 'https://dev-2pm3nnjy.auth0.com/',
+algorithms: ['RS256']
+});
+
+app.use(jwtCheck);
+
+app.get('/authorized', function (req, res) {
+res.send('Secured Resource');
+});
 
 // Define Cloudinary config
-cloudinary.config({
-  cloud_name: "dylavxosa",
-  api_key: "143846381816841",
-  api_secret: "IqLOEY6uxfY7-u_1EhmmbzJ2Vs0"
-});
+// cloudinary.config({
+//   cloud_name: "dylavxosa",
+//   api_key: "143846381816841",
+//   api_secret: "IqLOEY6uxfY7-u_1EhmmbzJ2Vs0"
+// });
 
 //File upload Code start
 const fileUpload = require('express-fileupload');
@@ -69,7 +90,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mediamgr");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/TestMgr");
 
 // Retrieving all media on server load
 app.get("/api/images", (req, res) => {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import API from "../utils/API"
 
 class Detail extends Component {
 
@@ -9,23 +10,36 @@ class Detail extends Component {
     };
 
     componentDidMount() {
-        this.getMovieData();
+        this.loadData()
     }
 
-    getMovieData = () => {
+    // Get individual data (Placeholder Content)
+    // getMovieData = () => {
     
-            let queryURL =
-          "https://www.omdbapi.com/?i=" + this.props.match.params.id + "&apikey=trilogy"
+    //         let queryURL =
+    //       "https://www.omdbapi.com/?i=" + this.props.match.params.id + "&apikey=trilogy"
     
-            axios.get(queryURL)
-                .then(result => this.setState({ post: result.data }))
-                .catch(err => console.log(err));
+    //         axios.get(queryURL)
+    //             .then(result => this.setState({ post: result.data }))
+    //             .catch(err => console.log(err));
     
-        };
+    //     };
+
+    loadData = () => {
+        API.getPost(this.props.match.params.id)
+            .then(res => this.setState({ post: res.data }))
+            .catch(err => console.log("Error loading database... \n" + err))
+    }
 
     render() {
-        
-        const { Poster, Title, Plot, Genre, Released, Rated, imdbRating, Director, Writer, Actors, Website } = this.state.post;
+        const { news_title, category, description, news_body, image_url, author, author_photo, date, video_src } = this.state.post;
+        const styles = {
+            imgStyleSm: {
+                width: "250px",
+                height: "‭250px",
+                marginBottom: "5%"
+              }        
+        }
 
         return(
                 <>
@@ -34,22 +48,23 @@ class Detail extends Component {
                     <div className="container outer-box">
                         <div className="movie-detail">
                             <div className="img-box">
-                                <img src={Poster} className="img-fluid" onError={this.src='../images/not-found.png'} />
+                                <img src={image_url} className="img-fluid" onError={this.src='../images/not-found.png'} />
                             </div>
+                            <br />
                             <div className="movie-description">
-                                <h2>{Title}</h2>
+                                <h2>{news_title}</h2>
                                 {/* <Link to="#" data-toggle="modal" data-target="#vidioModal" className="movie-trailer">
                                     <span className="fa fa-play"></span>
                                     Play Trailer
                                 </Link> */}
-                                <p><strong>Genre: </strong>{Genre}</p>
-                                <p><strong>Released: </strong>{Released}</p>
-                                <p><strong>Rated: </strong>{Rated}</p>
-                                <p><strong>imdbRating: </strong>{imdbRating}</p>
-                                <p><strong>Director: </strong>{Director}</p>
-                                <p><strong>Writer: </strong>{Writer}</p>
-                                <p><strong>Actors: </strong>{Actors}</p>
-                                <Link to="#" data-toggle="modal" data-target="#vidioModal" className="btn btn-theme">Watch Now</Link>
+                                <p><strong>Category: </strong>{category}</p>
+                                <p><strong>{description}</strong></p>
+                                <br />
+                                <p>{news_body}</p>
+                                <br />
+                                <p><strong>Article By: </strong>{author}</p>
+                                <img src={author_photo} className="img-fluid" style={styles.imgStyleSm} />
+                                {video_src ? <Link to="#" data-toggle="modal" data-target="#vidioModal" className="btn btn-theme">Watch Now</Link> : null}
                             </div>
                         </div>
                     </div>
