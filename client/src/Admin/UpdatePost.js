@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Col, Container } from "../components/Grid";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import API from "../utils/API";
-import Navadmin from "../components/Navadmin";
 import axios from "axios";
 import { Redirect } from 'react-router-dom';
 
@@ -119,6 +118,7 @@ class Detail extends Component {
       },
       imgStyleLg: {
         height: "100%",
+        // eslint-disable-next-line
         width: "100%",
         margin: "auto",
         alignContent: "left"
@@ -133,7 +133,6 @@ class Detail extends Component {
 
     return (
       <div>
-      <Navadmin />
       <Container fluid>
         <div  className="row admin-content-box py-5">
           <Col size="md-3"></Col>
@@ -141,7 +140,7 @@ class Detail extends Component {
             <div className="form-outer">
             <label>Current Article Photo</label>
             <br />
-            <img src={this.state.image_url ?  this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article Photo (Mini): ${this.state.news_title}`} style={styles.imgStyleSm} data-toggle="modal" data-target="#myModal" />
+            <img src={this.state.image_url ? this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article (Mini): ${this.state.news_title}`} style={styles.imgStyleSm} data-toggle="modal" data-target="#myModal" />
             {/* Modal */}
             <div id="myModal" class="modal fade" role="dialog">
               <div class="modal-dialog">
@@ -153,7 +152,7 @@ class Detail extends Component {
                   </div>
       
                   <div class="modal-body">
-                    <img src={this.state.image_url ?  this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article Photo (Full): ${this.state.news_title}`} style={styles.imgStyleLg} />
+                    <img src={this.state.image_url ? this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article (Full): ${this.state.news_title}`} style={styles.imgStyleLg} />
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

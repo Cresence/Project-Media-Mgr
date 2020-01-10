@@ -3,13 +3,20 @@ import { useAuth0 } from "../../react-auth0-wrapper";
 import { Link } from "react-router-dom";
 import logo from "../../assets/Banner_Logo.jpg";
 import "./style.css"
+// import auth0Client from "../../Auth";
 
-const Nav = () => {
-  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+const Nav = (props) => {
+  const { isAuthenticated, loginWithRedirect, logout, handleRedirectCallback } = useAuth0();
+
   const logoutWithRedirect = () =>
     logout({
       returnTo: window.location.origin
     });
+
+  // const signOut = () => {
+  //   auth0Client.signOut();
+  //   props.history.replace('/');
+  // }
   
     return (
       <>
@@ -40,7 +47,7 @@ const Nav = () => {
   <div className="container">
     <Link className="navbar-brand" to="/">Home</Link>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span className="navbar-toggler-icon"></span>
+      <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="collapsibleNavbar">
       <ul className="navbar-nav mr-auto">
@@ -72,7 +79,7 @@ const Nav = () => {
             </div>
           </li>
           <li className="nav-item">
-            <Link to="#" className="nav-link" onClick={() => logout()}>Log out</Link>
+            <Link to="#" className="nav-link" onClick={() => logoutWithRedirect()}>Log out</Link>
           </li>
         </>
           )}

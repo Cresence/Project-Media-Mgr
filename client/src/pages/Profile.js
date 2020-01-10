@@ -1,5 +1,4 @@
 // src/components/Profile.js
-import Navadmin from '../components/Navadmin/index'
 import React from "react";
 import { useAuth0 } from "../react-auth0-wrapper.js";
 
@@ -25,7 +24,7 @@ const Profile = () => {
 //     });
 // };
 
-  // console.log(user);
+  console.log(user);
 
   return (
     <div>

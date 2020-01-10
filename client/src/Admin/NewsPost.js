@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { Col, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import Navadmin from "../components/Navadmin";
-import { useAuth0 } from "../react-auth0-wrapper.js";
-import {Mainheading} from "../components/Mainheading"
+// import Navadmin from "../components/Navadmin";
+// import { useAuth0 } from "../react-auth0-wrapper.js";
+import { Mainheading } from "../components/Mainheading"
 // import FileUpload from '../components/FileUpload';
 import axios from 'axios';
 // import { Cloud9 } from "aws-sdk";
-import { userInfo } from "os";
+// import { userInfo } from "os";
 
 class NewsPost extends Component {
   state = {
@@ -157,7 +157,6 @@ class NewsPost extends Component {
     }
     return (
       <div>
-      <Navadmin />
       <Container fluid>
         <div  className="row admin-content-box py-5">
           <Col size="md-6">
@@ -166,7 +165,7 @@ class NewsPost extends Component {
             <form>
               <label>Current Article Photo</label>
               <br />
-              <img src={this.state.image_url ?  this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article Photo: ${this.state.news_title}`} style={{marginBottom: "2%"}}/>
+              <img src={this.state.image_url ? this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article: ${this.state.news_title}`} style={{marginBottom: "2%"}}/>
               <br />
               <label>News Title</label>
               <Input

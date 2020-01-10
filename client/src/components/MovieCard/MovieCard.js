@@ -9,7 +9,7 @@ function MovieCard(props){
     return(
             <div className="image-box col-sm-6 col-md-3">
                 <div className="poster-box">
-                    <img src={Poster ? Poster : "https://placehold.it/128x197?text=No%20Preview"} alt={`Article Photo: ${Poster}`} />
+                    <img src={Poster ? Poster : "https://placehold.it/128x197?text=No%20Preview"} alt={`Article: ${Poster}`} />
                 </div>
                 <p className="hover-description">
                     <span>{Plot}</span>

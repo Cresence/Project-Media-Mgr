@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import API from "../utils/API"
 
 class Detail extends Component {
@@ -28,11 +28,11 @@ class Detail extends Component {
     loadData = () => {
         API.getPost(this.props.match.params.id)
             .then(res => this.setState({ post: res.data }))
-            .catch(err => console.log("Error loading database... \n" + err))
+            .catch(err => console.log("Error loading database... \n"))
     }
 
     render() {
-        const { news_title, category, description, news_body, image_url, author, author_photo, date, video_src } = this.state.post;
+        const { news_title, category, description, news_body, image_url, author, author_photo, video_src } = this.state.post;
         const styles = {
             imgStyleSm: {
                 width: "250px",
@@ -48,7 +48,7 @@ class Detail extends Component {
                     <div className="container outer-box">
                         <div className="movie-detail">
                             <div className="img-box">
-                                <img src={image_url} className="img-fluid" onError={this.src='../images/not-found.png'} />
+                                <img src={image_url ? image_url : "https://placehold.it/128x197?text=No%20Preview"} className="img-fluid" alt="Article" />
                             </div>
                             <br />
                             <div className="movie-description">
@@ -63,7 +63,7 @@ class Detail extends Component {
                                 <p>{news_body}</p>
                                 <br />
                                 <p><strong>Article By: </strong>{author}</p>
-                                <img src={author_photo} className="img-fluid" style={styles.imgStyleSm} />
+                                <img src={author_photo ? author_photo : "https://placehold.it/128x197?text=No%20Preview"} className="img-fluid" style={styles.imgStyleSm} alt="Author" />
                                 {video_src ? <Link to="#" data-toggle="modal" data-target="#vidioModal" className="btn btn-theme">Watch Now</Link> : null}
                             </div>
                         </div>
@@ -71,22 +71,22 @@ class Detail extends Component {
                 </div>
 
                 {/* Video Modal Popup */}
-                <div class="modal fade show" id="vidioModal" >
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
+                <div className="modal fade show" id="vidioModal" >
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
                             {/* Modal body  */}
-                            <div class="modal-body">
-                                <div class="text-center top-icon">
+                            <div className="modal-body">
+                                <div className="text-center top-icon">
                                     <span>
-                                        <i class="fa fa-play-circle fa-spin-hover" aria-hidden="true"></i>
+                                        <i className="fa fa-play-circle fa-spin-hover" aria-hidden="true"></i>
                                     </span> 
                                 </div>
-                                <h4 class="text-center">Play Content</h4>
-                                <div class="trailer-box"></div>
+                                <h4 className="text-center">Play Content</h4>
+                                <div className="trailer-box"></div>
                             </div>
                             {/* Modal footer  */}
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-theme close_me" data-dismiss="modal">Close</button>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-theme close_me" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>

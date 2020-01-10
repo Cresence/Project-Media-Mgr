@@ -8,6 +8,8 @@ const cloudinary = require('cloudinary');
 const bodyParser = require("body-parser");
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
+require('dotenv').config();
+
 
 // Define Cloudinary config (dotenv)
 cloudinary.config({
@@ -22,7 +24,7 @@ const jwtCheck = jwt({
       cache: true,
       rateLimit: true,
       jwksRequestsPerMinute: 5,
-      jwksUri: process.env.JWKS_URI
+      jwksUri: "https://dev-2pm3nnjy.auth0.com/.well-known/jwks.json"
 }),
 audience: 'https://project-media-mgr/api',
 issuer: 'https://dev-2pm3nnjy.auth0.com/',

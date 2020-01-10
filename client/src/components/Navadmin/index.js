@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth0 } from "../../react-auth0-wrapper";
 
 function Navadmin() {
-  const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated } = useAuth0();
   return (
     <>
     {!isAuthenticated && (
