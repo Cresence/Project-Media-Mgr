@@ -33,5 +33,21 @@ export default {
     return axios.get("/api/images/" + id);
   },
 
+  getSliders: function() {
+    return axios.get("/api/sliders");
+  },
+  getSlider: function(id) {
+    return axios.get("/api/sliders/" + id);
+  },
+  deleteSlider: function(id) {
+    return axios.delete("/api/sliders/" + id);
+  },
+  saveSlider: function(postData) {
+    return axios.post("/api/sliders", postData);
+  },
+  updateSlider: function(id, data){
+    return axios.put("/api/sliders/" + id, data);
+  }
+
 };
 

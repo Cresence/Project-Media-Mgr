@@ -6,7 +6,7 @@ import "./style.css"
 // import auth0Client from "../../Auth";
 
 const Nav = (props) => {
-  const { isAuthenticated, loginWithRedirect, logout, handleRedirectCallback } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
   const logoutWithRedirect = () =>
     logout({
@@ -25,25 +25,55 @@ const Nav = (props) => {
   <div className="row">
     <div className="col-sm-8"> 
         <Link id="logo" to="/">
-        {/* <h1>H.N.I.C.</h1> */}
-        <img id="logo" src={logo} width="200px" alt="Logo"/>
+        <img id="logo" src={logo} width="230px" alt="H.N.I.C Logo"/>
         </Link>
       <br />
     </div>
     <div className="col-sm-4">
-     
-      <div className="input-group">
+      {/* <div className="input-group">
         <input type="text" className="form-control" id="search-input" placeholder="Search" />
         <button  className="search-movie" type="submit">
           <i className="fa fa-search" aria-hidden="true"></i>
         </button>
       </div>
+       */}
       <br/>
+    </div>
+    <div className="col col-sm-6">
+      <ul className="list-inline social-media-link">
+        <li className="list-inline-item">
+          <p><a href="https://www.facebook.com/Headnerdsincharge/" target="_blank" rel="noopener noreferrer" title="Facebook"><i className="fab fa-facebook-square" aria-hidden="true"></i></a></p>
+        </li>
+        <li className="list-inline-item">
+          <p><a href="https://twitter.com/HeadnerdsinCHRG" target="_blank" rel="noopener noreferrer" title="Twitter"><i className="fab fa-twitter" aria-hidden="true"></i></a></p>
+        </li>
+        <li className="list-inline-item">
+          <p><a href="https://instagram.com/headnerdsincharge" target="_blank" rel="noopener noreferrer" title="Instagram"><i className="fab fa-instagram" aria-hidden="true"></i></a></p>
+        </li>
+        <li className="list-inline-item">
+          <p><a href="https://www.youtube.com/channel/UCoxdiREQMiio1gUoXWE0loA" target="_blank" rel="noopener noreferrer" title="Youtube"><i className="fab fa-youtube" aria-hidden="true"></i></a></p>
+        </li>
+        <li className="list-inline-item">
+          <p><a href="https://www.twitch.tv/headnerdsincharge" target="_blank" rel="noopener noreferrer" title="Twitch"><i className="fab fa-twitch" aria-hidden="true"></i></a></p>
+        </li>
+        </ul>
+    </div>
+    <div className="col col-sm-6">
+          {!isAuthenticated && (
+            <Link className="btn btn-theme more-posts float-right" to="#" onClick={() => loginWithRedirect({})}>Sign Up / Log in</Link>
+          )}
+
+        {isAuthenticated && (
+          <>
+              <Link to="#" className="btn btn-theme more-posts float-right" onClick={() => logoutWithRedirect()}>Log out</Link>
+          </>
+        )}
+
     </div>
   </div>
 </div>
 
-<nav className="navbar navbar-expand-md bg-dark navbar-dark sticky-top" id="hdr">
+<nav className="navbar navbar-expand-md bg-dark navbar-dark sticky-top nav-justified nav-fill" id="hdr">
   <div className="container">
     <Link className="navbar-brand" to="/">Home</Link>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -52,39 +82,40 @@ const Nav = (props) => {
     <div className="collapse navbar-collapse" id="collapsibleNavbar">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/posts">Posts</Link>
+          <Link className="nav-link" to="/#">Show Archive</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/#">Videos Archive</Link>
+          <Link className="nav-link" to="/posts">Cons</Link>
         </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/posts">Cosplay/Lifestyle</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/posts">Gaming</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/posts">Entertainment</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/posts">Tech/Science</Link>
+        </li>
+        {isAuthenticated && (
+          <>
+            <li className="nav-item dropdown">
+              <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                User Options
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/profile">Profile</Link>
+                <div className="dropdown-divider"></div>
+                <Link className="dropdown-item" to="/admin/slider">Manage Front-Page Sliders</Link>
+                <Link className="dropdown-item" to="/admin/news">Manage Posts</Link>
+              </div>
+            </li>
+          </>
+        )}
       </ul>
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item"> 
-          {!isAuthenticated && (
-            <Link className="nav-link" to="#" onClick={() => loginWithRedirect({})}>Sign Up / Log in</Link>
-          )}
-      </li>
-      
-      {isAuthenticated && (
-        <>
-          <li className="nav-item dropdown">
-            <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              User Options
-            </Link>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <Link className="dropdown-item" to="/profile">Profile</Link>
-              <Link className="dropdown-item" to="#">Manage Front-Page Sliders</Link>
-              {/* <div className="dropdown-divider"></div> */}
-              <Link className="dropdown-item" to="/admin/news">Manage Posts</Link>
-            </div>
-          </li>
-          <li className="nav-item">
-            <Link to="#" className="nav-link" onClick={() => logoutWithRedirect()}>Log out</Link>
-          </li>
-        </>
-          )}
-
-      </ul>
+      <br />
     </div>
   </div>  
 </nav>

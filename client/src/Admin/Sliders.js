@@ -4,28 +4,18 @@ import { Link, Redirect } from "react-router-dom";
 import { Col, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-// import Navadmin from "../components/Navadmin";
-// import { useAuth0 } from "../react-auth0-wrapper.js";
 import { Mainheading } from "../components/Mainheading"
-// import FileUpload from '../components/FileUpload';
 import axios from 'axios';
-// import { Cloud9 } from "aws-sdk";
-// import { userInfo } from "os";
 
-class NewsPost extends Component {
+class Sliders extends Component {
   state = {
-    posts: [],
-    news_title: "",
-    category: "",
+    sliders: [],
+    title: "",
     description: "",
-    news_body: "",
-    date:"",
-    post_image:"",
+    linkTo: "",
+    image: "",
     success:"none",
     danger:"none",
-    image_url: "",
-    author: "",
-    author_photo: "",
 
     file: "",
     filename:"Choose File",
@@ -33,14 +23,14 @@ class NewsPost extends Component {
     message:"",
     messagestatus:"none",
     messagestatusclass:"",
+    post_image: "",
 
     redirect: false
   };
 
   componentDidMount() {
-    this.loadPosts();
+    this.loadSliders();
     // this.loadImage();
-    this.props.userInfo ? this.setState({ author: this.props.userInfo.name, author_photo: this.props.userInfo.picture }) : console.log('User not logged in...?');
   }
 
   loadImage = () => {
@@ -52,28 +42,26 @@ class NewsPost extends Component {
         } else {
           return (
           data[0].url,
-          this.setState({ image_url: data[0].url }),
+          this.setState({ image: data[0].url }),
           this.setState({message : "File Uploaded Successfully", messagestatusclass: "success"})
           )      
         }
-     // this.setState({ image_url: data[0].url })
     });
   };
 
-  // handleClicked = () => this.state.clicked ? this.loadImage : null
   
 
-  loadPosts = () => {
-    API.getPosts()
+  loadSliders = () => {
+    API.getSliders()
       .then(res =>
-        this.setState({ posts: res.data, news_title: "", category: "", description: "",date: "", filename: "Choose File",messagestatus:"none"  })
+        this.setState({ sliders: res.data, title: "", description: "", linkTo: "",date: "", filename: "Choose File",messagestatus:"none"  })
       )
       .catch(err => console.log(err));
   };
 
-  deletePost = id => {
-    API.deletePost(id)
-      .then(res => this.loadPosts())
+  deleteSlider = id => {
+    API.deleteSlider(id)
+      .then(res => this.loadSliders())
       .catch(err => console.log(err));
   };
   
@@ -87,19 +75,17 @@ class NewsPost extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault(); 
-    if (this.state.news_title && this.state.category && this.state.description) {
-      API.savePost({
-        news_title: this.state.news_title,
-        category: this.state.category,
+    if (this.state.title && this.state.description) {
+      console.log(this.state);
+      API.saveSlider({
+        title: this.state.title,
         description: this.state.description,
-        news_body: this.state.news_body,
-        image_url: this.state.image_url,
-        author: this.props.userInfo.name,
-        author_photo: this.props.userInfo.picture
+        image: this.state.image,
+        linkTo: this.state.linkTo
       })
         .then(res => {
           this.setState({success:"block", danger:"none", redirect: true})
-          this.loadPosts()
+          this.loadSliders()
         })
         .catch(err => console.log(err));
     }else{
@@ -127,7 +113,7 @@ class NewsPost extends Component {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(res => this.setState({image_url: res.data.url})); 
+      }).then(res => this.setState({image: res.data.url})); 
 
       this.setState({fileName: res.data.fileName, filePath: res.data.filePath});
       this.setState({uploadedFile: res.data.fileName + res.data.filePath});
@@ -147,7 +133,7 @@ class NewsPost extends Component {
     const { redirect } = this.state;
 
     if (redirect) {
-      return <Redirect to ='/admin/news' />;
+      return <Redirect to ='/admin/slider' />;
     }
 
     const styles = {
@@ -167,30 +153,20 @@ class NewsPost extends Component {
       <Container fluid>
         <div  className="row admin-content-box py-5">
           <Col size="md-6">
-            <Mainheading color="dark">Add Post</Mainheading>
+            <Mainheading color="dark">Add slider</Mainheading>
             <div className="form-outer">
             <form>
-              <label>Current Article Photo</label>
+              <label>Current Slider Photo</label>
               <br />
-              <img src={this.state.image_url ? this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article: ${this.state.news_title}`} style={styles.imgStyleSm}/>
+              <img src={this.state.image ? this.state.image :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article: ${this.state.title}`} style={styles.imgStyleSm} />
               <br />
-              <label>News Title</label>
+              <label>Slider Title</label>
               <Input
-                value={this.state.news_title}
+                value={this.state.title}
                 onChange={this.handleInputChange}
-                name="news_title"
-                placeholder="News Title (required)"
+                name="title"
+                placeholder="Slider Title (required)"
               />
-             <label>Select Category</label>
-              <select className="form-control" id="category" name="category" value={this.state.category} onChange={this.handleInputChange}>
-                <option value="">Select</option>
-                <option value="Cosplay">Cosplay/Lifestyle</option>
-                <option value="Gaming">Gaming</option>
-                <option value="Convention">Convention</option>
-                <option value="Entertainment">Entertainment</option>
-                <option value="Tech/Science">Tech/Science</option>
-              </select>
-              <br/>
 
               <label>Description</label>
               <TextArea
@@ -200,11 +176,11 @@ class NewsPost extends Component {
                 placeholder=" "
               />
 
-              <label>News Body</label>
+              <label>Link To</label>
               <TextArea
-                value={this.state.news_body}
+                value={this.state.linkTo}
                 onChange={this.handleInputChange}
-                name="news_body"
+                name="linkTo"
                 placeholder=" "
               />
               <br />
@@ -240,18 +216,17 @@ class NewsPost extends Component {
               <br />
               <FormBtn 
                 onClick={this.handleFormSubmit}
-                disabled={!(this.state.news_title && 
-                this.state.category &&
-                this.state.description &&
-                this.state.news_body)}
+                disabled={!(this.state.title && 
+                this.state.image &&
+                this.state.description)}
                 >
-               Add Post
+               Add Slider
               </FormBtn>
 
             </form>
             <div className="alert alert-success alert-dismissible" style={{display: this.state.success}}>
               <button type="button" className="close" data-dismiss="alert">&times;</button>
-               Post is added Successfully.
+               Slider is added Successfully.
             </div>
             <div className="alert alert-danger alert-dismissible"  style={{display: this.state.danger}}>
               <button type="button" className="close" data-dismiss="alert">&times;</button>
@@ -260,25 +235,24 @@ class NewsPost extends Component {
             </div>
           </Col>
           <Col size="md-6 sm-12">
-            <Mainheading color="dark">Post List</Mainheading>
+            <Mainheading color="dark">Most Recent Slider List</Mainheading>
             
-            {this.state.posts.length ? (
+            {this.state.sliders.length ? (
               <List>
-                {this.state.posts.map(post => (
-                <ListItem key={post._id}>
-                    <h5 style={styles.textStyle}><strong>News Title: </strong> {post.news_title}</h5>
-                    <h6 style={styles.textStyle}><strong>Category: </strong> {post.category}</h6>
-                    <p style={styles.textStyle}><strong>Description: </strong> {post.description}</p>
-                    <p style={styles.textStyle}><strong>News Body: </strong> {post.news_body}</p>
-                    <p style={styles.textStyle}><strong>Date: </strong> {post.date.slice(0, 10)}</p>
-                    <p className="image-url-news" style={styles.textStyle}><strong>Image Url : </strong><span>{post.image_url}</span></p>
+                {this.state.sliders.map(slider => (
+                <ListItem key={slider._id}>
+                    <h5 style={styles.textStyle}><strong>News Title: </strong> {slider.title}</h5>
+                    <p style={styles.textStyle}><strong>Description: </strong> {slider.description}</p>
+                    <p style={styles.textStyle}><strong>Link To: </strong> {slider.linkTo}</p>
+                    <p style={styles.textStyle}><strong>Date: </strong> {slider.date.slice(0, 10)}</p>
+                    <p className="image-url-news" style={styles.textStyle}><strong>Image Url : </strong><span>{slider.image}</span></p>
 
                       
-                    <Link to={"/articles/" + post._id} className="btn btn-theme">
-                       Update Post
+                    <Link to={"/sliders/" + slider._id} className="btn btn-theme">
+                       Update Slider
                     </Link>
-                    <button onClick={() => this.deletePost(post._id)} type="button" className="btn btn-theme-danger">
-                        Delete Post
+                    <button onClick={() => this.deleteSlider(slider._id)} type="button" className="btn btn-theme-danger">
+                        Delete Slider
                     </button>
                   </ListItem>
                 ))}
@@ -295,4 +269,4 @@ class NewsPost extends Component {
   }
 }
 
-export default NewsPost;
+export default Sliders;

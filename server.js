@@ -7,7 +7,7 @@ const db = require("./models");
 const cloudinary = require('cloudinary');
 const bodyParser = require("body-parser");
 const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
+const jwksRsa = require("jwks-rsa");
 require('dotenv').config();
 
 
@@ -16,25 +16,6 @@ cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
-});
-
-// JSON Token From Back-End API
-const jwtCheck = jwt({
-  secret: jwks.expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: "https://dev-2pm3nnjy.auth0.com/.well-known/jwks.json"
-}),
-audience: 'https://project-media-mgr/api',
-issuer: 'https://dev-2pm3nnjy.auth0.com/',
-algorithms: ['RS256']
-});
-
-app.use(jwtCheck);
-
-app.get('/authorized', function (req, res) {
-res.send('Secured Resource');
 });
 
 // Define Cloudinary config

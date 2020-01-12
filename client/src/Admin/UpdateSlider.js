@@ -7,18 +7,10 @@ import { Redirect } from 'react-router-dom';
 
 class Detail extends Component {
   state = {
-    news_title: "",
-    category: "",
+    title: "",
     description: "",
-    news_body: "",
-    date:"",
-    post_image:"",
-    success:"none",
-    danger:"none",
-    image_url: "",
-    author: "",
-    author_photo: "",
-    tags: "",
+    linkTo: "",
+    image: "",
 
     file: "",
     filename:"Choose File",
@@ -26,24 +18,21 @@ class Detail extends Component {
     message:"",
     messagestatus:"none",
     messagestatusclass:"",
+    post_image: "",
 
     redirect: false
   };
   componentDidMount() {
-    this.loadPosts();
+    this.loadSliders();
   }
 
-  loadPosts = () => {
-    API.getPost(this.props.match.params.id)
+  loadSliders = () => {
+    API.getSlider(this.props.match.params.id)
     .then(res => this.setState({ 
-      news_title: res.data.news_title,
-        category: res.data.category,
+        title: res.data.title,
         description: res.data.description,
-        news_body: res.data.news_body,
-        image_url: res.data.image_url,
-        author: res.data.author,
-        author_photo: res.data.author_photo,
-        tags: res.data.tags
+        linkTo: res.data.linkTo,
+        image: res.data.image,
      }))
     .catch(err => console.log(err));
   }
@@ -75,7 +64,7 @@ class Detail extends Component {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-      }).then(res => this.setState({image_url: res.data.url})); 
+      }).then(res => this.setState({image: res.data.url})); 
 
       this.setState({fileName: res.data.fileName, filePath: res.data.filePath});
       this.setState({uploadedFile: res.data.fileName + res.data.filePath});
@@ -93,15 +82,11 @@ class Detail extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.news_title && this.state.category && this.state.description ) {
-      API.updatePost(this.props.match.params.id, {
-        news_title: this.state.news_title,
-        category: this.state.category,
+      API.updateSlider(this.props.match.params.id, {
+        title: this.state.title,
         description: this.state.description,
-        news_body: this.state.news_body,
-        image_url: this.state.image_url,
-        author: this.state.author,
-        author_photo: this.state.author_photo,
-        tags: this.state.tags
+        image: this.state.image,
+        linkTo: this.state.linkTo
       })
         .then(res =>  this.setState({ redirect: true }))
         .catch(err => console.log(err));
@@ -117,6 +102,7 @@ class Detail extends Component {
         height: "250px",
         margin: "auto",
         alignContent: "middle",
+        width: "50%"
       },
       imgStyleLg: {
         height: "100%",
@@ -142,7 +128,7 @@ class Detail extends Component {
             <div className="form-outer">
             <label>Current Article Photo</label>
             <br />
-            <img src={this.state.image_url ? this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article (Mini): ${this.state.news_title}`} style={styles.imgStyleSm} data-toggle="modal" data-target="#myModal" />
+            <img src={this.state.image ? this.state.image :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article (Mini): ${this.state.news_title}`} style={styles.imgStyleSm} data-toggle="modal" data-target="#myModal" />
             {/* Modal */}
             <div id="myModal" className="modal fade" role="dialog">
               <div className="modal-dialog">
@@ -154,7 +140,7 @@ class Detail extends Component {
                   </div>
       
                   <div className="modal-body">
-                    <img src={this.state.image_url ? this.state.image_url :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article (Full): ${this.state.news_title}`} style={styles.imgStyleLg} />
+                    <img src={this.state.image ? this.state.image :"https://placehold.it/128x197?text=No%20Preview"} alt={`Article (Full): ${this.state.news_title}`} style={styles.imgStyleLg} />
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
@@ -164,23 +150,13 @@ class Detail extends Component {
             </div>
 
             <form>
-              <label>News Title</label>
+              <label>Slider Title</label>
               <Input
-                value={this.state.news_title}
+                value={this.state.title}
                 onChange={this.handleInputChange}
-                name="news_title"
-                placeholder="News Title (required)"
+                name="title"
+                placeholder="Slider Title (required)"
               />
-             <label>Select Category</label>
-              <select className="form-control" id="category" name="category" value={this.state.category} onChange={this.handleInputChange}>
-                <option value="">Select</option>
-                <option value="Cosplay">Cosplay/Lifestyle</option>
-                <option value="Gaming">Gaming</option>
-                <option value="Convention">Convention</option>
-                <option value="Entertainment">Entertainment</option>
-                <option value="Tech/Science">Tech/Science</option>
-              </select>
-              <br/>
 
               <label>Description</label>
               <TextArea
@@ -190,20 +166,11 @@ class Detail extends Component {
                 placeholder=" "
               />
 
-              <label>News Body</label>
+              <label>Link To</label>
               <TextArea
-                value={this.state.news_body}
+                value={this.state.linkTo}
                 onChange={this.handleInputChange}
-                name="news_body"
-                placeholder=" "
-              />
-
-
-              <label>Tags</label>
-              <TextArea
-                value={this.state.tags}
-                onChange={this.handleInputChange}
-                name="tags"
+                name="linkTo"
                 placeholder=" "
               />
 
@@ -240,12 +207,11 @@ class Detail extends Component {
               <br />
               <FormBtn 
                 onClick={this.handleFormSubmit}
-                disabled={!(this.state.news_title && 
-                this.state.category &&
-                this.state.description &&
-                this.state.news_body)}
+                disabled={!(this.state.title && 
+                this.state.image &&
+                this.state.description)}
                 >
-               Update Post
+               Update Slider
               </FormBtn>
 
             </form>

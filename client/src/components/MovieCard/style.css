@@ -47,6 +47,7 @@
     padding: 10px;
     min-height: 58px;
     text-align: center;
+    text-overflow: ellipsis;
   }
   .btn-theme{
     color: #fff;

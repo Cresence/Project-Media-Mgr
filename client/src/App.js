@@ -23,14 +23,15 @@ import Articles from "./pages/Articles";
 import Profile from "./pages/Profile"
 import NewsPost from "./Admin/NewsPost";
 import UpdatePost from "./Admin/UpdatePost";
-
+import Sliders from "./Admin/Sliders";
+import UpdateSlider from "./Admin/UpdatePost"
 
 function App() {
     const { user, isAuthenticated } = useAuth0();
     return (
       <Router history={history}>
         <div className="outer-container-box">
-        <Nav />
+        <Nav userInfo={user}/>
         <Header />
         <Switch>
           {/* <Route exact path='/callback' component={Callback}/> */}
@@ -38,10 +39,12 @@ function App() {
           <Route exact path="/posts" component={Posts} />
           <Route exact path="/posts/:id" component={Detail} />
           <Route exact path="/articles" component={Articles} />
-          <PrivateRoute exact path="/profile" component={Profile} /> 
+          <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/admin/news" render={(props) => <NewsPost {...props} isAuth={isAuthenticated} userInfo={user} />} />
+          <PrivateRoute exact path="/admin/slider" render={(props) => <Sliders {...props} isAuth={isAuthenticated} />} />
           {/* <PrivateRoute exact path="/admin/news" component={NewsPost} checkingSession={this.state.checkingSession} />} /> */}
           <PrivateRoute exact path="/articles/:id" component={UpdatePost} />
+          <PrivateRoute exact path="/sliders/:id" component={UpdateSlider} />
           <Route component={NoMatch} />
         </Switch>
         <Footer />
