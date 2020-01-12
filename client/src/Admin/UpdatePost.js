@@ -18,6 +18,7 @@ class Detail extends Component {
     image_url: "",
     author: "",
     author_photo: "",
+    video_src: "",
     tags: "",
 
     file: "",
@@ -43,7 +44,8 @@ class Detail extends Component {
         image_url: res.data.image_url,
         author: res.data.author,
         author_photo: res.data.author_photo,
-        tags: res.data.tags
+        tags: res.data.tags,
+        video_src: res.data.video_src
      }))
     .catch(err => console.log(err));
   }
@@ -101,7 +103,8 @@ class Detail extends Component {
         image_url: this.state.image_url,
         author: this.state.author,
         author_photo: this.state.author_photo,
-        tags: this.state.tags
+        tags: this.state.tags,
+        video_src: this.state.video_src
       })
         .then(res =>  this.setState({ redirect: true }))
         .catch(err => console.log(err));
@@ -197,17 +200,26 @@ class Detail extends Component {
                 name="news_body"
                 placeholder=" "
               />
-
-
+              <br />
+                  
+              <label>Video Source (If Applicable)</label>
+              <TextArea
+                value={this.state.video_src}
+                onChange={this.handleInputChange}
+                name="video_src"
+                placeholder="Only use the embedded video link from website (E.g., Youtube, Facebook, Twitch)"
+              />
+              <br />
+                  
               <label>Tags</label>
               <TextArea
                 value={this.state.tags}
                 onChange={this.handleInputChange}
                 name="tags"
-                placeholder=" "
+                placeholder="Separate tags by comma (E.g., food, travel, games, cosplay, etc...)"
               />
-
-
+                  
+              <br />
               <label>Upload Image</label>
               <div className={`alert alert-${this.state.messagestatusclass} alert-dismissible`} style={{display: this.state.messagestatus}}>
                 <button type="button" className="close" data-dismiss="alert">&times;</button>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import ReactHtmlParser from 'react-html-parser'; 
 // import axios from "axios";
 import API from "../utils/API"
 
@@ -37,7 +38,7 @@ class Detail extends Component {
             imgStyleSm: {
                 width: "250px",
                 height: "‭250px",
-                marginBottom: "5%"
+                marginBottom: "7%"
               }        
         }
 
@@ -62,9 +63,10 @@ class Detail extends Component {
                                 <br />
                                 <p>{news_body}</p>
                                 <br />
+                                {video_src ? <Link to="#" data-toggle="modal" data-target="#vidioModal" className="btn btn-theme" style={{marginBottom: "2%"}}>Watch Now</Link> : null}
                                 <p><strong>Article By: </strong>{author}</p>
                                 <img src={author_photo ? author_photo : "https://placehold.it/128x197?text=No%20Preview"} className="img-fluid" style={styles.imgStyleSm} alt="Author" />
-                                {video_src ? <Link to="#" data-toggle="modal" data-target="#vidioModal" className="btn btn-theme">Watch Now</Link> : null}
+                                <br />
                             </div>
                         </div>
                     </div>
@@ -82,7 +84,7 @@ class Detail extends Component {
                                     </span> 
                                 </div>
                                 <h4 className="text-center">Play Content</h4>
-                                <div className="trailer-box"></div>
+                            <div className="trailer-box">{video_src ? (<div> { ReactHtmlParser (video_src) } </div>) : null}</div>
                             </div>
                             {/* Modal footer  */}
                             <div className="modal-footer">

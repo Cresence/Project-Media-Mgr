@@ -38,6 +38,11 @@ body {
   
 }
 
+video {
+  width: 100%    !important;
+  height: auto   !important;
+}
+
 h1, h2, h3, h4, h5, h6, strong{
   font-family: 'Hammersmith One', sans-serif;
 }
@@ -273,7 +278,7 @@ nav.bg-dark {
 }
 .movie-description h2,.movie-description strong {
     color: #d61c35;
-    background: -webkit-linear-gradient(#d61c35 , #282c34);
+    background: -webkit-linear-gradient(#d61c35 , #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

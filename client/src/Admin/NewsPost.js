@@ -26,6 +26,8 @@ class NewsPost extends Component {
     image_url: "",
     author: "",
     author_photo: "",
+    video_src: "",
+    tags: "",
 
     file: "",
     filename:"Choose File",
@@ -56,12 +58,8 @@ class NewsPost extends Component {
           this.setState({message : "File Uploaded Successfully", messagestatusclass: "success"})
           )      
         }
-     // this.setState({ image_url: data[0].url })
     });
   };
-
-  // handleClicked = () => this.state.clicked ? this.loadImage : null
-  
 
   loadPosts = () => {
     API.getPosts()
@@ -94,6 +92,8 @@ class NewsPost extends Component {
         description: this.state.description,
         news_body: this.state.news_body,
         image_url: this.state.image_url,
+        video_src: this.state.video_src,
+        tags: this.state.tags,
         author: this.props.userInfo.name,
         author_photo: this.props.userInfo.picture
       })
@@ -208,6 +208,25 @@ class NewsPost extends Component {
                 placeholder=" "
               />
               <br />
+
+              <label>Video Source (If Applicable)</label>
+              <TextArea
+                value={this.state.video_src}
+                onChange={this.handleInputChange}
+                name="video_src"
+                placeholder="Only use the embedded video link from website (E.g., Youtube, Facebook, Twitch)"
+              />
+              <br />
+
+              <label>Tags</label>
+              <TextArea
+                value={this.state.tags}
+                onChange={this.handleInputChange}
+                name="tags"
+                placeholder="Separate tags by comma (E.g., food, travel, games, cosplay, etc...)"
+              />
+
+              <br />
               <label>Upload Image</label>
             <div className={`alert alert-${this.state.messagestatusclass} alert-dismissible`} style={{display: this.state.messagestatus}}>
               <button type="button" className="close" data-dismiss="alert">&times;</button>
@@ -270,6 +289,7 @@ class NewsPost extends Component {
                     <h6 style={styles.textStyle}><strong>Category: </strong> {post.category}</h6>
                     <p style={styles.textStyle}><strong>Description: </strong> {post.description}</p>
                     <p style={styles.textStyle}><strong>News Body: </strong> {post.news_body}</p>
+                    <p style={styles.textStyle}><strong>Tags: </strong> {post.tags}</p>
                     <p style={styles.textStyle}><strong>Date: </strong> {post.date.slice(0, 10)}</p>
                     <p className="image-url-news" style={styles.textStyle}><strong>Image Url : </strong><span>{post.image_url}</span></p>
 

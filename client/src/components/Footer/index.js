@@ -16,7 +16,8 @@ function Footer() {
     <footer className="footer">
       <div className="container">
         {/* <h1>Ad Here</h1> */}
-        <p data-toggle="tooltip" title="Website Created By Devon Harris">Head Nerds In Charge © Copyright {year}</p>
+        <p>We are HNIC, Head Nerds in Charge... your new favorite Nerd and Blerd talk Web show. Highlighting everything in pop &amp; geek culture from the black perspective</p>
+        <h5 data-toggle="tooltip" title="Website Created By Devon Harris">Head Nerds In Charge &copy; Copyright {year}</h5>
       </div>
     </footer>
   );

@@ -6,7 +6,7 @@ import "./style.css"
 // import auth0Client from "../../Auth";
 
 const Nav = (props) => {
-  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   const logoutWithRedirect = () =>
     logout({
@@ -82,22 +82,22 @@ const Nav = (props) => {
     <div className="collapse navbar-collapse" id="collapsibleNavbar">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/#">Show Archive</Link>
+          <Link className="nav-link" to="/posts">Show Archive</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/posts">Cons</Link>
+          <Link className="nav-link" to="/articles/categories/Conventions">Cons</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/posts">Cosplay/Lifestyle</Link>
+          <Link className="nav-link" to="/articles/categories/Cosplay/Lifestyle">Cosplay/Lifestyle</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/posts">Gaming</Link>
+          <Link className="nav-link" to="/articles/categories/Gaming">Gaming</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/posts">Entertainment</Link>
+          <Link className="nav-link" to="/articles/categories/Entertainment">Entertainment</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/posts">Tech/Science</Link>
+          <Link className="nav-link" to="/articles/categories/Tech/Science">Tech/Science</Link>
         </li>
         {isAuthenticated && (
           <>

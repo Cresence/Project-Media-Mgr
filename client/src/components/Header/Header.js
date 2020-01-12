@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import  "./style.css"
-import temp_slider from "../../assets/avengers.jpg";
+// import temp_slider from "../../assets/avengers.jpg";
 import slider_temp from "../../assets/slider_temp.jpg"
 import API from "../../utils/API"
 

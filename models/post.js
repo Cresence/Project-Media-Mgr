@@ -10,7 +10,8 @@ const postSchema = new Schema({
   image_url: { type: String, required: true },
   author: { type: String, required: true },
   author_photo: { type: String, required: true },
-  tags: {type: String }
+  tags: {type: String },
+  video_src: {type: String}
 });
 
 const Post = mongoose.model("Post", postSchema);

@@ -102,7 +102,7 @@
       }
       .movie-description h2,.movie-description strong {
         color: #d61c35;
-        background: -webkit-linear-gradient(#d61c35 , #282c34);
+        background: -webkit-linear-gradient(#d61c35 , #ffffff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
