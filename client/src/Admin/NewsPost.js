@@ -4,13 +4,11 @@ import { Link, Redirect } from "react-router-dom";
 import { Col, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-// import Navadmin from "../components/Navadmin";
-// import { useAuth0 } from "../react-auth0-wrapper.js";
 import { Mainheading } from "../components/Mainheading"
-// import FileUpload from '../components/FileUpload';
 import axios from 'axios';
 // import { Cloud9 } from "aws-sdk";
 // import { userInfo } from "os";
+// import RichTextEditor from "../components/Quill/Quill"
 
 class NewsPost extends Component {
   state = {
@@ -36,7 +34,6 @@ class NewsPost extends Component {
     messagestatus:"none",
     messagestatusclass:"",
 
-    redirect: false
   };
 
   componentDidMount() {
@@ -98,7 +95,7 @@ class NewsPost extends Component {
         author_photo: this.props.userInfo.picture
       })
         .then(res => {
-          this.setState({success:"block", danger:"none", redirect: true})
+          this.setState({success:"block", danger:"none"})
           this.loadPosts()
         })
         .catch(err => console.log(err));
@@ -184,11 +181,12 @@ class NewsPost extends Component {
              <label>Select Category</label>
               <select className="form-control" id="category" name="category" value={this.state.category} onChange={this.handleInputChange}>
                 <option value="">Select</option>
-                <option value="Cosplay">Cosplay/Lifestyle</option>
+                <option value="Show Archive">Show Archive</option>
+                <option value="Cosplay-Lifestyle">Cosplay/Lifestyle</option>
                 <option value="Gaming">Gaming</option>
                 <option value="Convention">Convention</option>
                 <option value="Entertainment">Entertainment</option>
-                <option value="Tech/Science">Tech/Science</option>
+                <option value="Tech-Science">Tech/Science</option>
               </select>
               <br/>
 
@@ -208,6 +206,19 @@ class NewsPost extends Component {
                 placeholder=" "
               />
               <br />
+              
+
+              {/* <label>News Body v2</label>
+              <RichTextEditor 
+                value={this.state.news_body}
+                onChange={this.handleInputChange}
+                name="news_body"
+                placeholder=" "
+              
+              />
+              <br /> */}
+              
+
 
               <label>Video Source (If Applicable)</label>
               <TextArea

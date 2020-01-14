@@ -13,7 +13,7 @@ function Footer() {
     // date time end
 
   return (
-    <footer className="footer">
+    <footer className="footer mt-auto py-3">
       <div className="container">
         {/* <h1>Ad Here</h1> */}
         <p>We are HNIC, Head Nerds in Charge... your new favorite Nerd and Blerd talk Web show. Highlighting everything in pop &amp; geek culture from the black perspective</p>

@@ -49,28 +49,28 @@ class Header extends Component {
           <img src={this.state.sliders.length ? slideA.image : slider_temp} alt={this.state.sliders.length ? slideA.title : "ph"} style={styles.imgStyle} />
           <div className="carousel-caption">
             {this.state.sliders.length ? <h3><span>{slideA.description}</span></h3> : null }
-            {this.state.sliders.length ? <p><Link to={slideA.linkTo} id="ph1" className="btn btn-theme more-posts" >More Detail</Link></p> : null}
+            {this.state.sliders.length ? <p><a href={slideA.linkTo} id="ph1" className="btn btn-theme more-posts" target="_blank" rel="noopener noreferrer">More Detail</a></p> : null}
           </div>   
         </div>
         <div className="carousel-item">
           <img src={this.state.sliders[1] ? slideB.image : slider_temp} alt={this.state.sliders[1] ? slideB.title : "ph"} style={styles.imgStyle} />
           <div className="carousel-caption">
             {this.state.sliders[1] ? <h3><span>{slideB.description}</span></h3> : null }
-            {this.state.sliders[1] ? <p><Link to={slideB.linkTo} id="ph1" className="btn btn-theme more-posts" >More Detail</Link></p> : null}
+            {this.state.sliders[1] ? <p><a href={slideB.linkTo} id="ph1" className="btn btn-theme more-posts" >More Detail</a></p> : null}
           </div>   
         </div>
         <div className="carousel-item">
           <img src={this.state.sliders[2] ? slideC.image : slider_temp} alt={this.state.sliders[2] ? slideC.title : "ph"} style={styles.imgStyle} />
           <div className="carousel-caption">
             {this.state.sliders[2] ? <h3><span>{slideC.description}</span></h3> : null }
-            {this.state.sliders[2] ? <p><Link to={slideC.linkTo} id="ph1" className="btn btn-theme more-posts" >More Detail</Link></p> : null}
+            {this.state.sliders[2] ? <p><a to={slideC.linkTo} id="ph1" className="btn btn-theme more-posts" target="_blank" rel="noopener noreferrer">More Detail</a></p> : null}
           </div>   
         </div>
         <div className="carousel-item">
           <img src={this.state.sliders[3] ? slideD.image : slider_temp} alt={this.state.sliders[3] ? slideD.title : "ph"} style={styles.imgStyle} />
           <div className="carousel-caption">
             {this.state.sliders[3] ? <h3><span>{slideD.description}</span></h3> : null }
-            {this.state.sliders[3] ? <p><Link to={slideD.linkTo} id="ph1" className="btn btn-theme more-posts" >More Detail</Link></p> : null}
+            {this.state.sliders[3] ? <p><a to={slideD.linkTo} id="ph1" className="btn btn-theme more-posts" target="_blank" rel="noopener noreferrer">More Detail</a></p> : null}
           </div>   
         </div>
       </div>

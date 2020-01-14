@@ -82,13 +82,13 @@ const Nav = (props) => {
     <div className="collapse navbar-collapse" id="collapsibleNavbar">
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/posts">Show Archive</Link>
+          <Link className="nav-link" to="/articles/categories/Show Archive">Show Archive</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/articles/categories/Conventions">Cons</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/articles/categories/Cosplay/Lifestyle">Cosplay/Lifestyle</Link>
+          <Link className="nav-link" to="/articles/categories/Cosplay-Lifestyle">Cosplay/Lifestyle</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/articles/categories/Gaming">Gaming</Link>
@@ -97,7 +97,7 @@ const Nav = (props) => {
           <Link className="nav-link" to="/articles/categories/Entertainment">Entertainment</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/articles/categories/Tech/Science">Tech/Science</Link>
+          <Link className="nav-link" to="/articles/categories/Tech-Science">Tech/Science</Link>
         </li>
         {isAuthenticated && (
           <>
@@ -110,6 +110,7 @@ const Nav = (props) => {
                 <div className="dropdown-divider"></div>
                 <Link className="dropdown-item" to="/admin/slider">Manage Front-Page Sliders</Link>
                 <Link className="dropdown-item" to="/admin/news">Manage Posts</Link>
+                <Link className="dropdown-item" to="/external-api">External API</Link>
               </div>
             </li>
           </>

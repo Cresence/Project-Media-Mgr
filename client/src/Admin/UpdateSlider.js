@@ -102,7 +102,6 @@ class Detail extends Component {
         height: "250px",
         margin: "auto",
         alignContent: "middle",
-        width: "50%"
       },
       imgStyleLg: {
         height: "100%",

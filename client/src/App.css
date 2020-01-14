@@ -36,6 +36,7 @@ body {
   min-height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
   
+  
 }
 
 video {
@@ -64,6 +65,11 @@ h1, h2, h3, h4, h5, h6, strong{
   box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
   transform: scale(0.9, 0.9);
   transition: all 0.2s ease-out;
+}
+
+#home {
+  margin-top: 2%;
+  /* margin-bottom: 2%; */
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -326,7 +332,10 @@ nav.bg-dark {
   box-shadow: 1px 2px 10.5px #fd545b;
 }
 .carousel-inner img {
-  width: 100%;
+  /* width: 100%; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   height: 100%;
 }
 .carousel h3{
@@ -347,6 +356,10 @@ nav.bg-dark {
 .carousel .btn:hover{
   box-shadow: 5px 3px 0.5px #fff;
 }
+#home {
+  margin-bottom: 10%;
+}
+
 .top-heading{
   color: #d61c35;
   background: -webkit-linear-gradient(#d61c35 , #282c34);
@@ -395,6 +408,7 @@ nav.bg-dark {
 .fa-spin-hover:hover {
   animation: fa-spin 1s infinite linear;
 }
+
 @-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}
 @keyframes fa-spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}
 #vidioModal .top-icon span{
@@ -411,6 +425,10 @@ nav.bg-dark {
   .carousel p{
     margin: 0px;
   }
+  #home {
+    margin-bottom: 15%;
+  }
+  
   .carousel .btn{
     padding: 2px 10px;
     margin-bottom: 0;

@@ -61,7 +61,7 @@ class Detail extends Component {
                                 <p><strong>Category: </strong>{category}</p>
                                 <p><strong>{description}</strong></p>
                                 <br />
-                                <p>{news_body}</p>
+                                <p>{ ReactHtmlParser (news_body) }</p>
                                 <br />
                                 {video_src ? <Link to="#" data-toggle="modal" data-target="#vidioModal" className="btn btn-theme" style={{marginBottom: "2%"}}>Watch Now</Link> : null}
                                 <p><strong>Article By: </strong>{author}</p>

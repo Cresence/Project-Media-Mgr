@@ -40,20 +40,20 @@ loadData = () => {
 
   // Render of React Components/Page
     render(){
-        const styles = {
-            bodyContent: {
-              textAlign: "center",
-              marginTop: "20px",
-              marginBottom: "20px"
-            }
-          };
+        // const styles = {
+        //     bodyContent: {
+        //       textAlign: "center",
+        //       marginTop: "20px",
+        //       marginBottom: "20px"
+        //     }
+        //   };
 
         return (
-                    <div id="home">
+                    <div id="home" className="d-flex flex-column h-100">
                         <div className="container outer-box">
                             <div className="row">
                                 <div className="col-12">
-                                    <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
+                                    {/* <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1> */}
                                 </div>
                             </div>
                             <div className="row movie_box">
@@ -70,11 +70,12 @@ loadData = () => {
                                         />
                                         ))}
                             </div>
-                            <div className="row">
+                            {/* <div className="row">
                                 <div className="col-12">
                                     <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
                                 </div>
-                            </div>
+                            </div> */}
+                            <br />
                         </div>
                     </div>
         )

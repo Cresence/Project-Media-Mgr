@@ -1,4 +1,4 @@
-// src/components/ExternalApi.js
+// src/views/ExternalApi.js
 
 import React, { useState } from "react";
 import { useAuth0 } from "../../react-auth0-wrapper";
@@ -11,6 +11,7 @@ const ExternalApi = () => {
   const callApi = async () => {
     try {
       const token = await getTokenSilently();
+      console.log(token);
 
       const response = await fetch("/api/external", {
         headers: {

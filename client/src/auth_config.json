@@ -1,4 +1,5 @@
 {
     "domain": "dev-2pm3nnjy.auth0.com",
-    "clientId": "51EwcJrWyLDyfkxarGGj7hItVL4Bjv3Z"
+    "clientId": "51EwcJrWyLDyfkxarGGj7hItVL4Bjv3Z",
+    "audience": "https://project-media-mgr/api"
 }

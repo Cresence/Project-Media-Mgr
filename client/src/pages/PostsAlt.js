@@ -40,22 +40,22 @@ loadData = () => {
 
   // Render of React Components/Page
     render(){
-        const styles = {
-            bodyContent: {
-              textAlign: "center",
-              marginTop: "20px",
-              marginBottom: "20px"
-            }
-          };
+        // const styles = {
+        //     bodyContent: {
+        //       textAlign: "center",
+        //       marginTop: "20px",
+        //       marginBottom: "20px"
+        //     }
+        //   };
 
         return (
                     <div id="home">
                         <div className="container outer-box">
-                            <div className="row">
+                            {/* <div className="row">
                                 <div className="col-12">
                                     <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="row movie_box">
                                     {/* Takes array of objects as arguments and convers them to JSX elements */}
 
@@ -70,11 +70,11 @@ loadData = () => {
                                         />
                                         ))}
                             </div>
-                            <div className="row">
+                            {/* <div className="row">
                                 <div className="col-12">
                                     <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
         )

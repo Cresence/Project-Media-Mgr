@@ -177,11 +177,12 @@ class Detail extends Component {
              <label>Select Category</label>
               <select className="form-control" id="category" name="category" value={this.state.category} onChange={this.handleInputChange}>
                 <option value="">Select</option>
-                <option value="Cosplay">Cosplay/Lifestyle</option>
+                <option value="Show Archive">Show Archive</option>
+                <option value="Cosplay-Lifestyle">Cosplay/Lifestyle</option>
                 <option value="Gaming">Gaming</option>
                 <option value="Convention">Convention</option>
                 <option value="Entertainment">Entertainment</option>
-                <option value="Tech/Science">Tech/Science</option>
+                <option value="Tech-Science">Tech/Science</option>
               </select>
               <br/>
 
