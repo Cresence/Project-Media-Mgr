@@ -110,7 +110,6 @@ const Nav = (props) => {
                 <div className="dropdown-divider"></div>
                 <Link className="dropdown-item" to="/admin/slider">Manage Front-Page Sliders</Link>
                 <Link className="dropdown-item" to="/admin/news">Manage Posts</Link>
-                <Link className="dropdown-item" to="/external-api">External API</Link>
               </div>
             </li>
           </>

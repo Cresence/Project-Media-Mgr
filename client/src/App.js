@@ -4,8 +4,6 @@ import { Router, Route, Switch } from "react-router-dom";
 import { useAuth0 } from "./react-auth0-wrapper";
 import "./App.css";
 import history from "./utils/history"
-// import auth0Client from './Auth';
-// import Callback from './Callback';
 
 
 // Components
@@ -13,11 +11,9 @@ import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/index";
 import Header from "./components/Header/Header";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
-import ExternalApi from "./components/ExternalApi/ExternalApi"
 import Loading from "./components/Loading/Loading"
 
 // Pages
-// import Home from "./pages/Home";
 import NoMatch from "./pages/NoMatch";
 import Posts from "./pages/Posts";
 import Detail from "./pages/Detail";
@@ -54,7 +50,6 @@ function App() {
           {/* <PrivateRoute exact path="/admin/news" component={NewsPost} checkingSession={this.state.checkingSession} />} /> */}
           <PrivateRoute exact path="/sliders/:id" component={UpdateSlider} />
           <PrivateRoute exact path="/articles/:id" component={UpdatePost} />
-          <PrivateRoute exact path="/external-api" component={ExternalApi} />
           <Route component={NoMatch} />
         </Switch>
         <Footer />
