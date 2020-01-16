@@ -49,7 +49,7 @@ loadData = () => {
         //   };
 
         return (
-                    <div id="home">
+                    <div id="home" className="py-5">
                         <div className="container outer-box">
                             {/* <div className="row">
                                 <div className="col-12">

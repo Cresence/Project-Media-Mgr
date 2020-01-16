@@ -14,6 +14,7 @@ import Footer from "./components/Footer/index";
 import Header from "./components/Header/Header";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
 import ExternalApi from "./components/ExternalApi/ExternalApi"
+import Loading from "./components/Loading/Loading"
 
 // Pages
 // import Home from "./pages/Home";
@@ -29,27 +30,11 @@ import UpdateSlider from "./Admin/UpdateSlider"
 import PostAlt from "./pages/PostsAlt"
 
 function App() {
-    const { user, isAuthenticated } = useAuth0();
+    const { user, isAuthenticated, loading } = useAuth0();
 
-    // function populateStorage(){
-    //   if (isAuthenticated)
-    //   // var userInfo = user 
-    //   sessionStorage.setItem(user, user) 
-    //   sessionStorage.setItem('isAuthenticatedStatus', isAuthenticated)
-    //   console.log(user)
-    // }
-
-    // populateStorage()
-
-    // // const userInfo = sessionStorage.getItem('userInfo')
-    // const isAuthenticatedStatus = sessionStorage.getItem('isAuthenticatedStatus');
-    // const userInfo = sessionStorage.getItem('userInfo')
-    // // userInfo ? console.log(userInfo) : console.log("No user loaded");
-    // console.log("Auth0: " + user)
-    // console.log("Session Storage: " + userInfo)
-    // // console.log(userInfo)
-    // console.log("Auth0: " + isAuthenticatedStatus)
-    // isAuthenticatedStatus ? console.log("Session Storage: " + isAuthenticatedStatus) : console.log("No status")
+    if (loading) {
+      return <Loading />;
+    }
 
     return (
       <Router history={history}>

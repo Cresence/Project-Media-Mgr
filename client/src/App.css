@@ -35,13 +35,33 @@ body {
   margin: 0;
   min-height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
-  
-  
+}
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
 }
 
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background: #d61c35;
+}
 video {
   width: 100%    !important;
   height: auto   !important;
+}
+
+.admin-content-box{
+  min-height: 80vh;
 }
 
 h1, h2, h3, h4, h5, h6, strong{
@@ -49,7 +69,7 @@ h1, h2, h3, h4, h5, h6, strong{
 }
 .outer-container-box{
   position: relative;
-  min-height: 100vh;
+  min-height: 75vh;
   padding-bottom: 77px;
 }
 
@@ -67,10 +87,6 @@ h1, h2, h3, h4, h5, h6, strong{
   transition: all 0.2s ease-out;
 }
 
-#home {
-  margin-top: 2%;
-  /* margin-bottom: 2%; */
-}
 
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.76);
@@ -86,6 +102,16 @@ h1, h2, h3, h4, h5, h6, strong{
 }
 .list-group-item {
   line-height: 2.5;
+}
+.form-outer{
+  margin-bottom: 10px;
+  border-radius: 0;
+}
+.form-outer label{
+font-weight: 500;
+}
+.form-outer .form-control{
+  border-radius: 0px;
 }
 .hover-description{
   position: absolute;
@@ -249,6 +275,7 @@ nav.bg-dark {
   }
 }
 
+
 .footer {
   position: absolute;
   right: 0;
@@ -356,9 +383,6 @@ nav.bg-dark {
 .carousel .btn:hover{
   box-shadow: 5px 3px 0.5px #fff;
 }
-#home {
-  margin-bottom: 10%;
-}
 
 .top-heading{
   color: #d61c35;
@@ -424,9 +448,6 @@ nav.bg-dark {
   }
   .carousel p{
     margin: 0px;
-  }
-  #home {
-    margin-bottom: 15%;
   }
   
   .carousel .btn{

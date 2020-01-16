@@ -293,7 +293,7 @@ class NewsPost extends Component {
             <Mainheading color="dark">Post List</Mainheading>
             
             {this.state.posts.length ? (
-              <List>
+              <List style={{"height": "50%"}}>
                 {this.state.posts.map(post => (
                 <ListItem key={post._id}>
                     <h5 style={styles.textStyle}><strong>News Title: </strong> {post.news_title}</h5>
@@ -305,10 +305,10 @@ class NewsPost extends Component {
                     <p className="image-url-news" style={styles.textStyle}><strong>Image Url : </strong><span>{post.image_url}</span></p>
 
                       
-                    <Link to={"/articles/" + post._id} className="btn btn-theme">
+                    <Link to={"/articles/" + post._id} className="btn btn-primary">
                        Update Post
                     </Link>
-                    <button onClick={() => this.deletePost(post._id)} type="button" className="btn btn-theme-danger">
+                    <button onClick={() => this.deletePost(post._id)} type="button" className="btn btn-danger">
                         Delete Post
                     </button>
                   </ListItem>

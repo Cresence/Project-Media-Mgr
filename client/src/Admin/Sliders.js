@@ -248,10 +248,10 @@ class Sliders extends Component {
                     <p className="image-url-news" style={styles.textStyle}><strong>Image Url : </strong><span>{slider.image}</span></p>
 
                       
-                    <Link to={"/sliders/" + slider._id} className="btn btn-theme">
+                    <Link to={"/sliders/" + slider._id} className="btn btn-primary">
                        Update Slider
                     </Link>
-                    <button onClick={() => this.deleteSlider(slider._id)} type="button" className="btn btn-theme-danger">
+                    <button onClick={() => this.deleteSlider(slider._id)} type="button" className="btn btn-danger">
                         Delete Slider
                     </button>
                   </ListItem>
