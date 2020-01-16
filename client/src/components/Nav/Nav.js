@@ -30,14 +30,15 @@ const Nav = (props) => {
       <br />
     </div>
     <div className="col-sm-4">
-      {/* <div className="input-group">
-        <input type="text" className="form-control" id="search-input" placeholder="Search" />
-        <button  className="search-movie" type="submit">
-          <i className="fa fa-search" aria-hidden="true"></i>
-        </button>
+      <div className="input-group">
+        {/* <form className="form-inline"> */}
+          <input type="text" className="form-control" id="search-input" placeholder="Search here..." />
+            <button className="search-movie" type="submit">
+            <Link to="/"><i className="fa fa-search" aria-hidden="true" style={{color: "#fff"}}></i></Link>
+          </button>
+        {/* </form> */}
       </div>
-       */}
-      <br/>
+      
     </div>
     <div className="col col-sm-6">
       <ul className="list-inline social-media-link">
@@ -75,12 +76,11 @@ const Nav = (props) => {
 
 <nav className="navbar navbar-expand-md bg-dark navbar-dark sticky-top nav-justified nav-fill" id="hdr">
   <div className="container">
-    <Link className="navbar-brand" to="/">Home</Link>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul className="navbar-nav mr-auto">
+      <ul className="navbar-nav mr-auto mx-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/articles/categories/Show Archive">Show Archive</Link>
         </li>

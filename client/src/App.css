@@ -87,6 +87,15 @@ h1, h2, h3, h4, h5, h6, strong{
   transition: all 0.2s ease-out;
 }
 
+.navbar.center .navbar-inner {
+  text-align: center;
+}
+
+.navbar.center .navbar-inner .nav {
+  display:inline-block;
+  float: none;
+  vertical-align: top;
+}
 
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.76);
