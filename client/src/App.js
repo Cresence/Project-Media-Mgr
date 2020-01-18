@@ -24,6 +24,7 @@ import UpdatePost from "./Admin/UpdatePost";
 import Sliders from "./Admin/Sliders";
 import UpdateSlider from "./Admin/UpdateSlider"
 import PostAlt from "./pages/PostsAlt"
+// import Search from "./pages/Search"
 
 function App() {
     const { user, isAuthenticated, loading } = useAuth0();
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/posts/:id" component={Detail} />
           <Route exact path="/articles" component={Articles} />
           <Route exact path="/articles/categories/:id" component={PostAlt} />
+          {/* <Route exact path="/search" component={Search} /> */}
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/admin/news" render={(props) => <NewsPost {...props} isAuth={isAuthenticated} userInfo={user} />} />
           <PrivateRoute exact path="/admin/slider" render={(props) => <Sliders {...props} isAuth={isAuthenticated} />} />

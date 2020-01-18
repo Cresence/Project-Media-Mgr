@@ -7,7 +7,7 @@ function MovieCard(props){
     const { Poster, Plot, Title, imdbID } = props;
 
     return(
-            <div className="image-box col-sm-6 col-md-4">
+            <div className="image-box col-sm-12 col-md-8 py-5">
                 <div className="poster-box">
                     <img src={Poster ? Poster : "https://placehold.it/128x197?text=No%20Preview"} alt={`Article: ${Poster}`} />
                 </div>
