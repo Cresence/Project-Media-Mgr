@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import  "./style.css"
-// import temp_slider from "../../assets/avengers.jpg";
 import slider_temp from "../../assets/slider_temp.jpg"
 import API from "../../utils/API"
 
@@ -63,14 +61,14 @@ class Header extends Component {
           <img src={this.state.sliders[2] ? slideC.image : slider_temp} alt={this.state.sliders[2] ? slideC.title : "ph"} style={styles.imgStyle} />
           <div className="carousel-caption">
             {this.state.sliders[2] ? <h3><span>{slideC.description}</span></h3> : null }
-            {this.state.sliders[2] ? <p><a to={slideC.linkTo} id="ph1" className="btn btn-theme more-posts" target="_blank" rel="noopener noreferrer">More Detail</a></p> : null}
+            {this.state.sliders[2] ? <p><a href={slideC.linkTo} id="ph1" className="btn btn-theme more-posts" target="_blank" rel="noopener noreferrer">More Detail</a></p> : null}
           </div>   
         </div>
         <div className="carousel-item">
           <img src={this.state.sliders[3] ? slideD.image : slider_temp} alt={this.state.sliders[3] ? slideD.title : "ph"} style={styles.imgStyle} />
           <div className="carousel-caption">
             {this.state.sliders[3] ? <h3><span>{slideD.description}</span></h3> : null }
-            {this.state.sliders[3] ? <p><a to={slideD.linkTo} id="ph1" className="btn btn-theme more-posts" target="_blank" rel="noopener noreferrer">More Detail</a></p> : null}
+            {this.state.sliders[3] ? <p><a href={slideD.linkTo} id="ph1" className="btn btn-theme more-posts" target="_blank" rel="noopener noreferrer">More Detail</a></p> : null}
           </div>   
         </div>
       </div>
