@@ -47,6 +47,18 @@ export default {
   },
   updateSlider: function(id, data){
     return axios.put("/api/sliders/" + id, data);
+  },
+  getUsers: function() {
+    return axios.get("/api/users");
+  },
+  getUser: function(id) {
+    return axios.get("/api/users/" + id);
+  },
+  updateUser: function(id, data){
+    return axios.put("/api/posts/" + id, data);
+  },
+  savePost: function(userData) {
+    return axios.post("/api/users", userData);
   }
 
 };

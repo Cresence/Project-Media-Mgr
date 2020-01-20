@@ -13,6 +13,7 @@ import Footer from "./components/Footer/index";
 import Header from "./components/Header/Header";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
 import Loading from "./components/Loading/Loading"
+import API from "./utils/API";
 
 // Pages
 import NoMatch from "./pages/NoMatch";
@@ -45,6 +46,23 @@ import Search from "./pages/Search"
 function App() {
     const { user, loading } = useAuth0();
 
+    let userInfo;
+
+    const loadUsers = () => {
+      API.getUsers()
+        .then(res => res.data)
+    }
+
+    const saveUser = () => {
+      API.saveUser({ name: user.name, userEmail: user.email, role: "reader" })
+    }
+
+    const findUser = (loadUsers) => {
+      loadUsers.filter(e => user.email === e.userEmail ? userInfo = e : saveUser)
+    }
+
+    userInfo ? console.log(userInfo) : console.log("Local user info not found... ");
+
     if (loading) {
       return <Loading />;
     }
@@ -52,7 +70,7 @@ function App() {
     return (
       <Router history={history}>
         <div className="outer-container-box">
-        <Nav userInfo={user}/>
+        <Nav />
         <Header />
         <Switch>
           {/* <Route exact path='/callback' component={Callback}/> */}

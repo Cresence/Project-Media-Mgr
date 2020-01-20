@@ -2,7 +2,8 @@
 
 import React, { Component } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import MovieCard from "../components/MovieCard/MovieCard"
+import MovieCard from "../components/MovieCard/MovieCard";
+// import Ad from "../components/Ad/Ad";
 
 // Predefined methods to call from local database
 import API from "../utils/API"
@@ -30,7 +31,7 @@ loadData = () => {
                         <div className="container outer-box">
                             <div className="row">
                                 {/* <div className="col-12"> */}
-                                    {/* <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1> */}
+                                    {/* <Ad /> */}
                                 {/* </div> */}
                             </div>
                             <div className="row movie_box py-5">
@@ -66,7 +67,7 @@ loadData = () => {
                             </div>
                             {/* <div className="row">
                                 <div className="col-12">
-                                    <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
+                                    <Ad />
                                 </div>
                             </div> */}
                         </div>
