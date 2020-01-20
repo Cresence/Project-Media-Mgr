@@ -23,40 +23,17 @@ loadData = () => {
         .then(result => this.setState({ postData: result.data }))
         .catch(err => console.log("Error loading database... \n" + err))
 }
-  // API call using predefined inquiry, returns responses as array of objects (Placeholder content)
-//   getpostData = () => {
-    
-//     this.state.movies.map((e, i) => {
-//         let queryURL =
-//       "https://www.omdbapi.com/?t=" + this.state.movies[i] + "&apikey=trilogy"
-
-//         axios.get(queryURL)
-//             .then(result => this.setState({ postData: [...this.state.postData, result.data] }));
-
-//             return e;
-//     });
-       
-//   }
-
   // Render of React Components/Page
     render(){
-        // const styles = {
-        //     bodyContent: {
-        //       textAlign: "center",
-        //       marginTop: "20px",
-        //       marginBottom: "20px"
-        //     }
-        //   };
-
         return (
                     <div id="home" className="py-5">
                         <div className="container outer-box">
                             <div className="row">
-                                <div className="col-12">
+                                {/* <div className="col-12"> */}
                                     {/* <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1> */}
-                                </div>
+                                {/* </div> */}
                             </div>
-                            <div className="row movie_box">
+                            <div className="row movie_box py-5">
                                     {/* Takes array of objects as arguments and convers them to JSX elements */}
 
                                         {/* {this.state.postData.map(element => (

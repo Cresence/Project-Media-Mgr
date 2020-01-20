@@ -1,6 +1,7 @@
 // src/components/Profile.js
 import React from "react";
 import { useAuth0 } from "../react-auth0-wrapper.js";
+import Loading from "../components/Loading/Loading"
 
 // var keys = require('../keys');
 
@@ -10,7 +11,7 @@ const Profile = () => {
 
   if (loading || !user) {
     return (
-      <div>Loading...</div>
+      <Loading />
     );
   }
 
@@ -23,8 +24,6 @@ const Profile = () => {
 //       }
 //     });
 // };
-
-  console.log(user);
 
   return (
     <div>

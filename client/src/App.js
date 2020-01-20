@@ -3,7 +3,8 @@ import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { useAuth0 } from "./react-auth0-wrapper";
 import "./App.css";
-import history from "./utils/history"
+import history from "./utils/history";
+import ReactGA from 'react-ga';
 
 
 // Components
@@ -24,10 +25,25 @@ import UpdatePost from "./Admin/UpdatePost";
 import Sliders from "./Admin/Sliders";
 import UpdateSlider from "./Admin/UpdateSlider"
 import PostAlt from "./pages/PostsAlt"
-// import Search from "./pages/Search"
+import Search from "./pages/Search"
+
+// Initialize google analytics page view tracking
+// history.listen(location => {
+//  ReactGA.set({ page: location.pathname }); // Update the user's current page
+//  ReactGA.pageview(location.pathname); // Record a pageview for the given page
+// });
+
+// const trackingId = "UA-1234567890-1"; // Replace with your Google Analytics tracking ID
+// ReactGA.initialize(trackingId);
+// ReactGA.set({
+//   userId: auth.currentUserId(),
+  // any data that is relevant to the user session
+  // that you would like to track with google analytics
+// });
+
 
 function App() {
-    const { user, isAuthenticated, loading } = useAuth0();
+    const { user, loading } = useAuth0();
 
     if (loading) {
       return <Loading />;
@@ -45,10 +61,10 @@ function App() {
           <Route exact path="/posts/:id" component={Detail} />
           <Route exact path="/articles" component={Articles} />
           <Route exact path="/articles/categories/:id" component={PostAlt} />
-          {/* <Route exact path="/search" component={Search} /> */}
+          <Route exact path="/search?=:id" component={Search} />
           <PrivateRoute exact path="/profile" component={Profile} />
-          <PrivateRoute exact path="/admin/news" render={(props) => <NewsPost {...props} isAuth={isAuthenticated} userInfo={user} />} />
-          <PrivateRoute exact path="/admin/slider" render={(props) => <Sliders {...props} isAuth={isAuthenticated} />} />
+          <PrivateRoute exact path="/admin/news" component={NewsPost} />} />
+          <PrivateRoute exact path="/admin/slider" component={Sliders} />} />
           {/* <PrivateRoute exact path="/admin/news" component={NewsPost} checkingSession={this.state.checkingSession} />} /> */}
           <PrivateRoute exact path="/sliders/:id" component={UpdateSlider} />
           <PrivateRoute exact path="/articles/:id" component={UpdatePost} />

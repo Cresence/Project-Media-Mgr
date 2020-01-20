@@ -44,7 +44,7 @@ class Detail extends Component {
 
         return(
                 <>
-                <div id="home">
+                <div id="home" className="py-5">
                     <br />
                     <div className="container outer-box">
                         <div className="movie-detail">

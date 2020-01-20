@@ -1,33 +1,66 @@
-// import React, { Component } from "react";
-// var TodoList=React.createClass({
+// Dependencies
 
-//     getInitialState: function(){
-//         return {
-//             limit: 5
-//         }
-//     },
+import React, { Component } from "react";
+// import axios from "axios";
+// import MovieCard from "../components/MovieCard/MovieCard"
 
-//     onLoadMore() {
-//         this.setState({
-//             limit: this.state.limit + 5
-//         });
-//     },
+// Predefined methods to call from local database
+import API from "../utils/API"
 
-//     renderTodos: function(){
-//         return todos.slice(0,this.state.limit).map((todo)=>{
-//             return(
-//                 <Todo key={todo.todo_id}{...todo} onToggle={this.props.onToggle}/>
-//             );
-//         });
-//     };
+class Posts extends Component {
 
-//     render:function(){
-//         var {todos} = this.props;
-//         return(
-//             <div>
-//                 {this.renderTodos()}
-//                 <a href="#" onClick={this.onLoadMore}>Load</a>
-//             </div>
-//         )
-//     }
-// });
+    state = {
+        postData: []
+    };
+
+
+    componentDidMount() {
+        this.loadData()
+    }
+
+    loadData = () => {
+        API.getPosts()
+            .then(result => this.setState({ postData: result.data }))
+            .catch(err => console.log("Error loading database... \n" + err))
+    }
+
+    // Render of React Components/Page
+    render(){
+        console.log(window.location.href)
+        return (
+                    <div id="home" className="py-5">
+                        <div className="container outer-box">
+                            {/* <div className="row">
+                                <div className="col-12">
+                                    <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
+                                </div>
+                            </div> */}
+                            <div className="row movie_box">
+                                    {/* Takes array of objects as arguments and convers them to JSX elements */}
+
+                                    <p>{window.location.href}</p>
+                                    <h5>This is the search page</h5>
+
+                                        {/* {this.state.postData.length ? this.state.postData.filter(e => e.category || e.news_title === this.props.match.params.id).map(element => (
+                                        <MovieCard
+                                        Title={element.news_title}
+                                        imdbID={element._id}
+                                        Plot={element.description}
+                                        Poster={element.image_url}
+                                        // key={Math.floor(Math.random() * 10000000)
+                                        key={element._id ? element._id : Math.floor(Math.random() * 1000)}
+                                        />
+                                        )) : <h5 className="py-5" style={{textAlign: "center", margin: "auto"}}>Nothing available at this time... Try again later!</h5>} */}
+                            </div>
+                            {/* <div className="row">
+                                <div className="col-12">
+                                    <h1 style={styles.bodyContent}>{"{ Ad Here }"}</h1>
+                                </div>
+                            </div> */}
+                        </div>
+                    </div>
+        )
+    }
+}
+
+export default Posts;

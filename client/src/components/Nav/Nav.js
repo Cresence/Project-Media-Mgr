@@ -12,6 +12,19 @@ const Nav = (props) => {
       returnTo: window.location.origin
     });
 
+    function handleKeyUp(event) {
+      if (event.key === 'Enter') {
+        console.log(document.getElementById("search-input").value + " was searched... ");
+        handleFormSubmit(event);
+      }
+    }
+
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      window.location.replace("/search?=" + document.getElementById("search-input").value).trim();
+    }
+
     return (
         <>
     <div className="container">
@@ -25,9 +38,9 @@ const Nav = (props) => {
       <div className="col-sm-4">
         <div className="input-group">
           {/* <form className="form-inline"> */}
-            <input type="text" className="form-control" id="search-input" placeholder="Search here..." />
-              <button className="search-movie" type="submit">
-              <Link to="/"><i className="fa fa-search" aria-hidden="true" style={{color: "#fff"}}></i></Link>
+            <input type="search" className="form-control" id="search-input" placeholder="Search here..." onKeyUp={handleKeyUp} onSubmit={handleFormSubmit}/>
+              <button className="search-movie" type="submit" onSubmit={handleFormSubmit}>
+              <Link to={document.getElementById("search-input") ? "/search?=" + document.getElementById("search-input").value : ""} ><i className="fa fa-search" aria-hidden="true" style={{color: "#fff"}}></i></Link>
             </button>
           {/* </form> */}
         </div>
