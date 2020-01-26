@@ -4,7 +4,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import { useAuth0 } from "./react-auth0-wrapper";
 import "./App.css";
 import history from "./utils/history";
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 
 // Components
@@ -13,7 +13,7 @@ import Footer from "./components/Footer/index";
 import Header from "./components/Header/Header";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute"
 import Loading from "./components/Loading/Loading"
-import API from "./utils/API";
+// import API from "./utils/API";
 
 // Pages
 import NoMatch from "./pages/NoMatch";
@@ -26,7 +26,7 @@ import UpdatePost from "./Admin/UpdatePost";
 import Sliders from "./Admin/Sliders";
 import UpdateSlider from "./Admin/UpdateSlider"
 import PostAlt from "./pages/PostsAlt"
-import Search from "./pages/Search"
+// import Search from "./pages/Search"
 
 // Initialize google analytics page view tracking
 // history.listen(location => {
@@ -44,24 +44,25 @@ import Search from "./pages/Search"
 
 
 function App() {
-    const { user, loading } = useAuth0();
+    // const { user, loading } = useAuth0();
+    const { loading } = useAuth0();
 
-    let userInfo;
+    // let userInfo;
 
-    const loadUsers = () => {
-      API.getUsers()
-        .then(res => res.data)
-    }
+    // const loadUsers = () => {
+    //   API.getUsers()
+    //     .then(res => res.data)
+    // }
 
-    const saveUser = () => {
-      API.saveUser({ name: user.name, userEmail: user.email, role: "reader" })
-    }
+    // const saveUser = () => {
+    //   API.saveUser({ name: user.name, userEmail: user.email, role: "reader" })
+    // }
 
-    const findUser = (loadUsers) => {
-      loadUsers.filter(e => user.email === e.userEmail ? userInfo = e : saveUser)
-    }
+    // const findUser = (loadUsers) => {
+    //   loadUsers.filter(e => user.email === e.userEmail ? userInfo = e : saveUser)
+    // }
 
-    userInfo ? console.log(userInfo) : console.log("Local user info not found... ");
+    // userInfo ? console.log(userInfo) : console.log("Local user info not found... ");
 
     if (loading) {
       return <Loading />;
@@ -79,7 +80,7 @@ function App() {
           <Route exact path="/posts/:id" component={Detail} />
           <Route exact path="/articles" component={Articles} />
           <Route exact path="/articles/categories/:id" component={PostAlt} />
-          <Route exact path="/search?=:id" component={Search} />
+          {/* <Route exact path="/search/query_result=:id" component={Search} /> */}
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/admin/news" component={NewsPost} />} />
           <PrivateRoute exact path="/admin/slider" component={Sliders} />} />

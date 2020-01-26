@@ -12,72 +12,54 @@ const Nav = (props) => {
       returnTo: window.location.origin
     });
 
-    function handleKeyUp(event) {
-      if (event.key === 'Enter') {
-        console.log(document.getElementById("search-input").value + " was searched... ");
-        handleFormSubmit(event);
-      }
-    }
-
-
-    function handleFormSubmit(event) {
-      event.preventDefault();
-      window.location.replace("/search?=" + document.getElementById("search-input").value).trim();
-    }
-
     return (
         <>
     <div className="container">
       <br/>
       <div className="row">
-        <div className="col-sm-8"> 
+        <div className="col"> 
           <Link id="logo" to="/">
           <img id="logo" src={logo} width="230px" alt="H.N.I.C Logo"/>
           </Link>
         </div>
-      <div className="col-sm-4">
-        <div className="input-group">
-          {/* <form className="form-inline"> */}
-            <input type="search" className="form-control" id="search-input" placeholder="Search here..." onKeyUp={handleKeyUp} onSubmit={handleFormSubmit}/>
-              <button className="search-movie" type="submit" onSubmit={handleFormSubmit}>
-              <Link to={document.getElementById("search-input") ? "/search?=" + document.getElementById("search-input").value : ""} ><i className="fa fa-search" aria-hidden="true" style={{color: "#fff"}}></i></Link>
-            </button>
-          {/* </form> */}
+        <div className="col align-self-end"> 
+        <a id="shop-btn" className="btn btn-theme more-posts float-right" target="_blank" rel="noopener noreferrer" title="Store" href="https://gjapparelstore.com/collections/all/head-nerds">Shop Now</a>
         </div>
+    </div>
+    <div className="row">
+        <div className="col">
+          <ul className="list-inline social-media-link">
+            <li className="list-inline-item">
+              <p><a href="https://www.facebook.com/Headnerdsincharge/" target="_blank" rel="noopener noreferrer" title="Facebook"><i className="fab fa-facebook-square" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+            </li>
+            <li className="list-inline-item">
+              <p><a href="https://twitter.com/HeadnerdsinCHRG" target="_blank" rel="noopener noreferrer" title="Twitter"><i className="fab fa-twitter" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+            </li>
+            <li className="list-inline-item">
+              <p><a href="https://instagram.com/headnerdsincharge" target="_blank" rel="noopener noreferrer" title="Instagram"><i className="fab fa-instagram" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+            </li>
+            <li className="list-inline-item">
+              <p><a href="https://www.youtube.com/channel/UCoxdiREQMiio1gUoXWE0loA" target="_blank" rel="noopener noreferrer" title="Youtube"><i className="fab fa-youtube" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+            </li>
+            <li className="list-inline-item">
+              <p><a href="https://www.twitch.tv/headnerdsincharge" target="_blank" rel="noopener noreferrer" title="Twitch"><i className="fab fa-twitch" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+            </li>
+            </ul>
+        </div>
+          <div className="col align-self-end">
+              {!isAuthenticated && (
+                <Link className="btn btn-theme more-posts float-right" to="#" onClick={() => loginWithRedirect({})}>Sign Up / Log in</Link>
+              )}
 
-      </div>
-      <div className="col col-sm-6">
-        <ul className="list-inline social-media-link">
-          <li className="list-inline-item">
-            <p><a href="https://www.facebook.com/Headnerdsincharge/" target="_blank" rel="noopener noreferrer" title="Facebook"><i className="fab fa-facebook-square" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
-          </li>
-          <li className="list-inline-item">
-            <p><a href="https://twitter.com/HeadnerdsinCHRG" target="_blank" rel="noopener noreferrer" title="Twitter"><i className="fab fa-twitter" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
-          </li>
-          <li className="list-inline-item">
-            <p><a href="https://instagram.com/headnerdsincharge" target="_blank" rel="noopener noreferrer" title="Instagram"><i className="fab fa-instagram" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
-          </li>
-          <li className="list-inline-item">
-            <p><a href="https://www.youtube.com/channel/UCoxdiREQMiio1gUoXWE0loA" target="_blank" rel="noopener noreferrer" title="Youtube"><i className="fab fa-youtube" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
-          </li>
-          <li className="list-inline-item">
-            <p><a href="https://www.twitch.tv/headnerdsincharge" target="_blank" rel="noopener noreferrer" title="Twitch"><i className="fab fa-twitch" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
-          </li>
-          </ul>
-      </div>
-      <div className="col col-sm-6">
-            {!isAuthenticated && (
-              <Link className="btn btn-theme more-posts float-right" to="#" onClick={() => loginWithRedirect({})}>Sign Up / Log in</Link>
+            {isAuthenticated && (
+              <>
+                  <Link to="#" className="btn btn-theme more-posts" onClick={() => logoutWithRedirect()}>Log out</Link>
+              </>
             )}
 
-          {isAuthenticated && (
-            <>
-                <Link to="#" className="btn btn-theme more-posts float-right" onClick={() => logoutWithRedirect()}>Log out</Link>
-            </>
-          )}
+          </div>
 
       </div>
-    </div>
   </div>
 
     <nav className="navbar navbar-expand-md bg-dark navbar-dark sticky-top nav-justified nav-fill" id="hdr">

@@ -26,13 +26,23 @@ loadData = () => {
 }
   // Render of React Components/Page
     render(){
+
+        
+
         return (
                     <div id="home" className="py-5">
                         <div className="container outer-box">
-                            <div className="row">
-                                {/* <div className="col-12"> */}
-                                    {/* <Ad /> */}
-                                {/* </div> */}
+                            <div className="row d-flex justify-content-center">
+                                <div className="col-sm-8">
+                                    <div className="input-group">
+                                      {/* <form className="form-inline"> */}
+                                        <input type="search" className="form-control" id="search-input" placeholder="Search here..." />
+                                          <button className="search-movie" type="submit">
+                                          <i className="fa fa-search" aria-hidden="true" style={{color: "#fff"}}></i>
+                                        </button>
+                                      {/* </form> */}
+                                    </div>
+                                </div>
                             </div>
                             <div className="row movie_box py-5">
                                     {/* Takes array of objects as arguments and convers them to JSX elements */}

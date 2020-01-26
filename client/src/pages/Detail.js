@@ -52,7 +52,7 @@ class Detail extends Component {
                                 <img src={image_url ? image_url : "https://placehold.it/128x197?text=No%20Preview"} className="img-fluid" alt="Article" />
                             </div>
                             <br />
-                            <div className="movie-description">
+                            <div className="movie-description py-5">
                                 <h2>{news_title}</h2>
                                 {/* <Link to="#" data-toggle="modal" data-target="#vidioModal" className="movie-trailer">
                                     <span className="fa fa-play"></span>
