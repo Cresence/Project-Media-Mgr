@@ -11,13 +11,22 @@ import API from "../utils/API"
 class Posts extends Component {
 
     state = {
-        postData: []
+        postData: [],
+        searchQuery: ""
     };
 
 
 componentDidMount() {
     this.loadData()
 }
+
+handleInputChange = event => {
+  const { name, value } = event.target;
+  this.setState({
+    [name]: value
+  });
+};
+
 
 loadData = () => {
     API.getPosts()
@@ -26,8 +35,12 @@ loadData = () => {
 }
   // Render of React Components/Page
     render(){
+      const { searchQuery, postData } = this.state;
+      // console.log(postData);
 
-        
+      const filterItems = (arr, query) => {
+        return arr.filter(el => el.news_title.toLowerCase().indexOf(query.toLowerCase()) !== -1)
+      }
 
         return (
                     <div id="home" className="py-5">
@@ -35,35 +48,22 @@ loadData = () => {
                             <div className="row d-flex justify-content-center">
                                 <div className="col-sm-8">
                                     <div className="input-group">
-                                      {/* <form className="form-inline"> */}
-                                        <input type="search" className="form-control" id="search-input" placeholder="Search here..." />
+                                        <input type="text" className="form-control" id="search-input" onChange={this.handleInputChange} value={this.state.searchQuery} name="searchQuery" placeholder="Search here..." />
                                           <button className="search-movie" type="submit">
                                           <i className="fa fa-search" aria-hidden="true" style={{color: "#fff"}}></i>
                                         </button>
-                                      {/* </form> */}
                                     </div>
                                 </div>
                             </div>
                             <div className="row movie_box py-5">
                                     {/* Takes array of objects as arguments and convers them to JSX elements */}
-
-                                        {/* {this.state.postData.map(element => (
-                                        <MovieCard
-                                        Title={element.news_title}
-                                        imdbID={element._id}
-                                        Plot={element.description}
-                                        Poster={element.image_url}
-                                        // key={Math.floor(Math.random() * 10000000)
-                                        key={element._id ? element._id : Math.floor(Math.random() * 1000)}
-                                        />
-                                        ))} */}
                                         <InfiniteScroll
                                           dataLength={this.state.postData.length}
                                           next={this.fetchMoreData}
                                           hasMore={this.state.hasMore}
                                           loader={<h4>Loading...</h4>}
                                         >
-                                          {this.state.postData.map(element => (
+                                          {filterItems(postData, searchQuery).map(element => (
                                         <MovieCard
                                         Title={element.news_title}
                                         imdbID={element._id}

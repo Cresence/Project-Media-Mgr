@@ -48,12 +48,12 @@ const Nav = (props) => {
         </div>
           <div className="col align-self-end">
               {!isAuthenticated && (
-                <Link className="btn btn-theme more-posts float-right" to="#" onClick={() => loginWithRedirect({})}>Sign Up / Log in</Link>
+                <Link className="btn btn-theme more-posts float-right" to="#" style={{marginBottom: "2rem"}} onClick={() => loginWithRedirect({})}>Sign Up / Log in</Link>
               )}
 
             {isAuthenticated && (
               <>
-                  <Link to="#" className="btn btn-theme more-posts" onClick={() => logoutWithRedirect()}>Log out</Link>
+                  <Link to="#" className="btn btn-theme more-posts" style={{marginBottom: "2rem"}} onClick={() => logoutWithRedirect()}>Log out</Link>
               </>
             )}
 
