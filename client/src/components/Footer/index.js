@@ -13,7 +13,7 @@ function Footer() {
     // date time end
 
   return (
-    <footer className="footer mt-auto py-3">
+    <footer className="footer mt-auto">
       <div className="container">
         {/* <Ad /> */}
         <a href="https://www.patreon.com/Headnerdsincharge" className="btn btn-theme more-posts" target="_blank" rel="noopener noreferrer" title="Patreon">Support Us</a>

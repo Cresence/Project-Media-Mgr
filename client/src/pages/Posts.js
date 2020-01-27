@@ -36,15 +36,13 @@ loadData = () => {
   // Render of React Components/Page
     render(){
       const { searchQuery, postData } = this.state;
-      // console.log(postData);
-
       const filterItems = (arr, query) => {
         return arr.filter(el => el.news_title.toLowerCase().indexOf(query.toLowerCase()) !== -1)
       }
 
         return (
-                    <div id="home" className="py-5">
-                        <div className="container outer-box">
+                    <div id="home" className="py-3">
+                        <div className="container outer-box py-5">
                             <div className="row d-flex justify-content-center">
                                 <div className="col-sm-8">
                                     <div className="input-group">
@@ -63,20 +61,19 @@ loadData = () => {
                                           hasMore={this.state.hasMore}
                                           loader={<h4>Loading...</h4>}
                                         >
-                                          {filterItems(postData, searchQuery).map(element => (
+                                          {postData ? filterItems(postData, searchQuery).map(element => (
                                         <MovieCard
                                         Title={element.news_title}
                                         imdbID={element._id}
                                         Plot={element.description}
                                         Poster={element.image_url}
-                                        // key={Math.floor(Math.random() * 10000000)
                                         key={element._id ? element._id : Math.floor(Math.random() * 1000)}
                                         />
-                                        ))}
+                                        )) : <h5 className="py-5 d-flex justify-content-center" style={{textAlign: "center", margin: "auto"}}>Nothing available at this time... Try again later!</h5>}
                                         </InfiniteScroll>
                             </div>
                             {/* <div className="row">
-                                <div className="col-12">
+                                <div className="col">
                                     <Ad />
                                 </div>
                             </div> */}

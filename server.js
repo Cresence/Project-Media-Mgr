@@ -18,13 +18,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// Define Cloudinary config
-// cloudinary.config({
-//   cloud_name: "dylavxosa",
-//   api_key: "143846381816841",
-//   api_secret: "IqLOEY6uxfY7-u_1EhmmbzJ2Vs0"
-// });
-
 //File upload Code start
 const fileUpload = require('express-fileupload');
 
@@ -59,12 +52,6 @@ app.post('/upload', (req, res) => {
   });
 });
 
-// Set up Auth0 configuration
-const authConfig = {
-  domain: "dev-2pm3nnjy.auth0.com",
-  audience: "https://project-media-mgr/api"
-};
-
 // Define middleware that validates incoming bearer tokens
 // using JWKS from dev-2pm3nnjy.auth0.com
 const checkJwt = jwt({
@@ -72,11 +59,11 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
+    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
   }),
 
-  audience: authConfig.audience,
-  issuer: `https://${authConfig.domain}/`,
+  audience: process.env.AUTH0_AUDIENCE,
+  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
   algorithm: ["RS256"]
 });
 

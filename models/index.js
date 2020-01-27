@@ -1,5 +1,6 @@
 module.exports = {
   Post: require("./post"),
   Image: require("./image"),
-  Slider: require("./slider")
+  Slider: require("./slider"),
+  User: require("./user")
 };

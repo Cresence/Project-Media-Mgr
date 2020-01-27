@@ -29,11 +29,11 @@ const ExternalApi = () => {
   };
 
   return (
-    <>
+    <div className="py-5" style={{marginBottom: "500px"}}>
       <h1>External API</h1>
       <button onClick={callApi}>Ping API</button>
       {showResult && <code>{JSON.stringify(apiMessage, null, 2)}</code>}
-    </>
+    </div>
   );
 };
 

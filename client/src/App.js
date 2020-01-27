@@ -6,7 +6,6 @@ import "./App.css";
 import history from "./utils/history";
 // import ReactGA from 'react-ga';
 
-
 // Components
 import Nav from "./components/Nav/Nav";
 import Footer from "./components/Footer/index";
@@ -26,6 +25,7 @@ import UpdatePost from "./Admin/UpdatePost";
 import Sliders from "./Admin/Sliders";
 import UpdateSlider from "./Admin/UpdateSlider"
 import PostAlt from "./pages/PostsAlt"
+import ExternalApi from "./components/ExternalApi/ExternalApi"
 // import Search from "./pages/Search"
 
 // Initialize google analytics page view tracking
@@ -42,28 +42,8 @@ import PostAlt from "./pages/PostsAlt"
   // that you would like to track with google analytics
 // });
 
-
 function App() {
-    // const { user, loading } = useAuth0();
     const { loading } = useAuth0();
-
-    // let userInfo;
-
-    // const loadUsers = () => {
-    //   API.getUsers()
-    //     .then(res => res.data)
-    // }
-
-    // const saveUser = () => {
-    //   API.saveUser({ name: user.name, userEmail: user.email, role: "reader" })
-    // }
-
-    // const findUser = (loadUsers) => {
-    //   loadUsers.filter(e => user.email === e.userEmail ? userInfo = e : saveUser)
-    // }
-
-    // userInfo ? console.log(userInfo) : console.log("Local user info not found... ");
-
     if (loading) {
       return <Loading />;
     }
@@ -74,17 +54,15 @@ function App() {
         <Nav />
         <Header />
         <Switch>
-          {/* <Route exact path='/callback' component={Callback}/> */}
           <Route exact path="/" component={Posts} />
           <Route exact path="/posts" component={Posts} />
           <Route exact path="/posts/:id" component={Detail} />
           <Route exact path="/articles" component={Articles} />
           <Route exact path="/articles/categories/:id" component={PostAlt} />
-          {/* <Route exact path="/search/query_result=:id" component={Search} /> */}
           <PrivateRoute exact path="/profile" component={Profile} />
+          <PrivateRoute exact path="/external-api" component={ExternalApi} />
           <PrivateRoute exact path="/admin/news" component={NewsPost} />} />
           <PrivateRoute exact path="/admin/slider" component={Sliders} />} />
-          {/* <PrivateRoute exact path="/admin/news" component={NewsPost} checkingSession={this.state.checkingSession} />} /> */}
           <PrivateRoute exact path="/sliders/:id" component={UpdateSlider} />
           <PrivateRoute exact path="/articles/:id" component={UpdatePost} />
           <Route component={NoMatch} />

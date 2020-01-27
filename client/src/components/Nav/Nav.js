@@ -5,7 +5,7 @@ import logo from "../../assets/Banner_Logo.jpg";
 import "./style.css"
 
 const Nav = (props) => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
   const logoutWithRedirect = () =>
     logout({
@@ -53,7 +53,7 @@ const Nav = (props) => {
 
             {isAuthenticated && (
               <>
-                  <Link to="#" className="btn btn-theme more-posts" style={{marginBottom: "2rem"}} onClick={() => logoutWithRedirect()}>Log out</Link>
+                  <Link to="#" className="btn btn-theme more-posts float-right" style={{marginBottom: "2rem"}} onClick={() => logoutWithRedirect()}>Log out</Link>
               </>
             )}
 
@@ -87,7 +87,7 @@ const Nav = (props) => {
             <li className="nav-item">
               <Link className="nav-link" to="/articles/categories/Tech-Science">Tech/Science</Link>
             </li>
-            {isAuthenticated && (
+            {isAuthenticated && user["https://dev-2pm3nnjy.com/app_metadata"].roles[0] === "admin" ? (
               <>
                 <li className="nav-item dropdown">
                   <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,6 +101,15 @@ const Nav = (props) => {
                   </div>
                 </li>
               </>
+            ) : (
+              <li className="nav-item dropdown">
+              <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                User Options
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/profile">Profile</Link>
+                </div>
+                </li>
             )}
           </ul>
           <br />

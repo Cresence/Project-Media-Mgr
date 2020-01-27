@@ -55,7 +55,7 @@ export default {
     return axios.get("/api/users/" + id);
   },
   updateUser: function(id, data){
-    return axios.put("/api/posts/" + id, data);
+    return axios.put("/api/users/" + id, data);
   },
   saveUser: function(userData) {
     return axios.post("/api/users", userData);
