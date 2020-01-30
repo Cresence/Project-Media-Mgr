@@ -15,8 +15,6 @@ const Profile = () => {
     );
   }
 
-  console.log(user)
-  console.log(user["https://dev-2pm3nnjy.com/app_metadata"].roles[0])
   return (
     <div>
     <div className="container-fluid">

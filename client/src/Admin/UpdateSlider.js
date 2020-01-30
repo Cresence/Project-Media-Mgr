@@ -81,7 +81,7 @@ class Detail extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.news_title && this.state.category && this.state.description ) {
+    if (this.state.title && this.state.description && this.state.image ) {
       API.updateSlider(this.props.match.params.id, {
         title: this.state.title,
         description: this.state.description,

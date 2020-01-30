@@ -60,6 +60,10 @@ video {
   height: auto   !important;
 }
 
+.form-outer {
+  margin-bottom: 10px;
+}
+
 .admin-content-box{
   min-height: 80vh;
 }
