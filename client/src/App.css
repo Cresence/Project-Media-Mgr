@@ -117,7 +117,7 @@ h1, h2, h3, h4, h5, h6, strong{
   line-height: 2.5;
 }
 .form-outer{
-  margin-bottom: 10px;
+  margin-bottom: 10%;
   border-radius: 0;
 }
 .form-outer label{
@@ -298,6 +298,7 @@ nav.bg-dark {
   background-color: #000;
   text-align: center;
   color: #fff;
+  margin-top: 2.5rem;
 }
 .footer::before{
   content: "";

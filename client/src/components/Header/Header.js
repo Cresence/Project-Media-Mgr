@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import  "./style.css"
-import slider_temp from "../../assets/slider_temp.jpg"
 import API from "../../utils/API"
+
+const slider_temp = "https://placehold.it/128x197?text=No%20Preview"
 
 class Header extends Component {
 
@@ -80,7 +81,7 @@ class Header extends Component {
       </a>
     </div>
     )
-}
+  }
 }
 
 export default Header

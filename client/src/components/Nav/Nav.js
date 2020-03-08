@@ -5,12 +5,14 @@ import logo from "../../assets/Banner_Logo.jpg";
 import "./style.css"
 
 const Nav = (props) => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
   const logoutWithRedirect = () =>
     logout({
       returnTo: window.location.origin
     });
+
+    const userLevel = user ? user["https://dev-2pm3nnjy.com/app_metadata"].roles[0] : null
 
     return (
         <>
@@ -19,30 +21,31 @@ const Nav = (props) => {
       <div className="row">
         <div className="col"> 
           <Link id="logo" to="/">
-          <img id="logo" src={logo} width="230px" alt="H.N.I.C Logo"/>
+          {/* <img id="logo" src={logo} width="230px" alt="H.N.I.C Logo"/> */}
+          <h3>Your Website Logo Here</h3>
           </Link>
         </div>
         <div className="col align-self-end"> 
-        <a id="shop-btn" className="btn btn-theme more-posts float-right" target="_blank" rel="noopener noreferrer" title="Store" href="https://gjapparelstore.com/collections/all/head-nerds">Shop Now</a>
+        <a id="shop-btn" className="btn btn-theme more-posts float-right" target="_blank" rel="noopener noreferrer" title="Store" href="#">Shop Now</a>
         </div>
     </div>
     <div className="row">
         <div className="col">
           <ul className="list-inline social-media-link">
             <li className="list-inline-item">
-              <p><a href="https://www.facebook.com/Headnerdsincharge/" target="_blank" rel="noopener noreferrer" title="Facebook"><i className="fab fa-facebook-square" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+              <p><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Facebook"><i className="fab fa-facebook-square" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
             </li>
             <li className="list-inline-item">
-              <p><a href="https://twitter.com/HeadnerdsinCHRG" target="_blank" rel="noopener noreferrer" title="Twitter"><i className="fab fa-twitter" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+              <p><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" title="Twitter"><i className="fab fa-twitter" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
             </li>
             <li className="list-inline-item">
-              <p><a href="https://instagram.com/headnerdsincharge" target="_blank" rel="noopener noreferrer" title="Instagram"><i className="fab fa-instagram" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+              <p><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram"><i className="fab fa-instagram" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
             </li>
             <li className="list-inline-item">
-              <p><a href="https://www.youtube.com/channel/UCoxdiREQMiio1gUoXWE0loA" target="_blank" rel="noopener noreferrer" title="Youtube"><i className="fab fa-youtube" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+              <p><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" title="Youtube"><i className="fab fa-youtube" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
             </li>
             <li className="list-inline-item">
-              <p><a href="https://www.twitch.tv/headnerdsincharge" target="_blank" rel="noopener noreferrer" title="Twitch"><i className="fab fa-twitch" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+              <p><a href="https://www.twitch.tv/" target="_blank" rel="noopener noreferrer" title="Twitch"><i className="fab fa-twitch" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
             </li>
             </ul>
         </div>
@@ -87,7 +90,7 @@ const Nav = (props) => {
             <li className="nav-item">
               <Link className="nav-link" to="/articles/categories/Tech-Science">Tech/Science</Link>
             </li>
-            {isAuthenticated && user["https://dev-2pm3nnjy.com/app_metadata"].roles[0] (
+            {isAuthenticated && userLevel === 'admin' ? (
               <>
                 <li className="nav-item dropdown">
                   <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,9 +104,7 @@ const Nav = (props) => {
                   </div>
                 </li>
               </>
-            )}
-
-        {isAuthenticated && (
+            ) : isAuthenticated ? (
               <>
                 <li className="nav-item dropdown">
                   <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -115,7 +116,21 @@ const Nav = (props) => {
                   </div>
                 </li>
               </>
-            )}
+            ) : null}
+
+        {/* {isAuthenticated && (
+              <>
+                <li className="nav-item dropdown">
+                  <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    User Options
+                  </Link>
+                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <Link className="dropdown-item" to="/profile">Profile</Link>
+                    <div className="dropdown-divider"></div>
+                  </div>
+                </li>
+              </>
+            )} */}
 
           </ul>
           <br />

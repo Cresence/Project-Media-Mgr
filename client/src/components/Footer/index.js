@@ -13,12 +13,12 @@ function Footer() {
     // date time end
 
   return (
-    <footer className="footer mt-auto">
+    <footer className="footer mt-auto fixed-bottom">
       <div className="container">
         {/* <Ad /> */}
-        <a href="https://www.patreon.com/Headnerdsincharge" className="btn btn-theme more-posts" target="_blank" rel="noopener noreferrer" title="Patreon">Support Us</a>
-        <p>We are HNIC, Head Nerds in Charge... your new favorite Nerd and Blerd talk Web show. Highlighting everything in pop &amp; geek culture from the black perspective <a href="https://linktr.ee/headnerdsincharge" target="_blank" rel="noopener noreferrer" title="Linktree"> ...more info</a> </p>
-        <h5 data-toggle="tooltip" title="Website Created By Devon Harris">Head Nerds In Charge &copy; Copyright {year}</h5>
+        {/* <a href="https://www.patreon.com/Headnerdsincharge" className="btn btn-theme more-posts" target="_blank" rel="noopener noreferrer" title="Patreon">Support Us</a> */}
+        <p>Media Manager is a website template in a blog/media-content allowing users to sign up and login. The administrator can add posts (including video content in an embed format) and edit the header sliders, and posts made (Body content, article photo, tags, video content, etc.) </p>
+        <h5 data-toggle="tooltip" title="Website Created Using ReactJS, Express, MongoDB, and NodeJS (MERN Stack)">Devon Harris &copy; Copyright {year}</h5>
       </div>
     </footer>
   );
