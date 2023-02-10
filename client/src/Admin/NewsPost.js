@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { Col, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import { Mainheading } from "../components/Mainheading"
+import { Mainheading } from "../components/Mainheading";
 import axios from 'axios';
 
 class NewsPost extends Component {
@@ -58,7 +58,7 @@ class NewsPost extends Component {
   loadPosts = () => {
     API.getPosts()
       .then(res =>
-        this.setState({ posts: res.data, news_title: "", category: "", description: "",date: "", filename: "Choose File",messagestatus:"none"  })
+        this.setState({ posts: res.data, news_title: "", category: "", description: "",date: "", filename: "Choose File", messagestatus:"none"  })
       )
       .catch(err => console.log(err));
   };
@@ -135,7 +135,6 @@ class NewsPost extends Component {
     }
     
   }
-
   
   render() {
     const { redirect } = this.state;
@@ -204,19 +203,6 @@ class NewsPost extends Component {
               />
               <br />
               
-
-              {/* <label>News Body v2</label>
-              <RichTextEditor 
-                value={this.state.news_body}
-                onChange={this.handleInputChange}
-                name="news_body"
-                placeholder=" "
-              
-              />
-              <br /> */}
-              
-
-
               <label>Video Source (If Applicable)</label>
               <TextArea
                 value={this.state.video_src}
