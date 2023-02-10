@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3001;
 const db = require("./models");
 const cloudinary = require('cloudinary');
 const bodyParser = require("body-parser");
-const jwt = require('express-jwt');
+const { expressjwt } = require('express-jwt');
 const jwksRsa = require("jwks-rsa");
 require('dotenv').config();
 
@@ -54,7 +54,7 @@ app.post('/upload', (req, res) => {
 
 // Define middleware that validates incoming bearer tokens
 // using JWKS from dev-2pm3nnjy.auth0.com
-const checkJwt = jwt({
+const checkJwt = expressjwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
@@ -64,7 +64,7 @@ const checkJwt = jwt({
 
   audience: process.env.AUTH0_AUDIENCE,
   issuer: `https://${process.env.AUTH0_DOMAIN}/`,
-  algorithm: ["RS256"]
+  algorithms: ["RS256"]
 });
 
 // Define an endpoint that must be called with an access token
@@ -85,12 +85,18 @@ app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+
+  app.get('*', (req,res) => res.sendFile(path.resolve(__dirname, 'client', 'build','index.html')));
 }
 // Add routes, both API and view
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/TestMgr");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/TestMgr").then(() => {
+  console.log("Connected to Database")
+}).catch((err) => {
+    console.log("Not Connected to Database ERROR! ", err);
+});
 
 // Retrieving all media on server load
 app.get("/api/images", (req, res) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth0 } from "../../react-auth0-wrapper";
 import { Link } from "react-router-dom";
-import logo from "../../assets/Banner_Logo.jpg";
+// import logo from "../../assets/Banner_Logo.jpg";
 import "./style.css"
 
 const Nav = (props) => {
