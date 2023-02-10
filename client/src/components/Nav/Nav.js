@@ -3,6 +3,8 @@ import { useAuth0 } from "../../react-auth0-wrapper";
 import { Link } from "react-router-dom";
 // import logo from "../../assets/Banner_Logo.jpg";
 import "./style.css"
+const socialMedias = ["https://www.facebook.com", "https://www.twitter.com", "https://instagram.com/", "https://www.youtube.com", "https://www.twitch.tv/"];
+const blankObjectSite = "#";
 
 const Nav = (props) => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
@@ -26,26 +28,26 @@ const Nav = (props) => {
           </Link>
         </div>
         <div className="col align-self-end"> 
-        <a id="shop-btn" className="btn btn-theme more-posts float-right" target="_blank" rel="noopener noreferrer" title="Store" href="#">Shop Now</a>
+        <a id="shop-btn" className="btn btn-theme more-posts float-right" target="_blank" rel="noopener noreferrer" title="Store" href={ blankObjectSite }>Shop Now</a>
         </div>
     </div>
     <div className="row">
         <div className="col">
           <ul className="list-inline social-media-link">
             <li className="list-inline-item">
-              <p><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Facebook"><i className="fab fa-facebook-square" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+              <p><a href={ socialMedias[0] } target="_blank" rel="noopener noreferrer" title="Facebook"><i className="fab fa-facebook-square" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
             </li>
             <li className="list-inline-item">
-              <p><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" title="Twitter"><i className="fab fa-twitter" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+              <p><a href={ socialMedias[1] } target="_blank" rel="noopener noreferrer" title="Twitter"><i className="fab fa-twitter" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
             </li>
             <li className="list-inline-item">
-              <p><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram"><i className="fab fa-instagram" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+              <p><a href={ socialMedias[2] } target="_blank" rel="noopener noreferrer" title="Instagram"><i className="fab fa-instagram" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
             </li>
             <li className="list-inline-item">
-              <p><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" title="Youtube"><i className="fab fa-youtube" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+              <p><a href={ socialMedias[3] } target="_blank" rel="noopener noreferrer" title="Youtube"><i className="fab fa-youtube" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
             </li>
             <li className="list-inline-item">
-              <p><a href="https://www.twitch.tv/" target="_blank" rel="noopener noreferrer" title="Twitch"><i className="fab fa-twitch" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
+              <p><a href={ socialMedias[4] } target="_blank" rel="noopener noreferrer" title="Twitch"><i className="fab fa-twitch" aria-hidden="true"></i><span style={{display: "none"}}>_blank</span></a></p>
             </li>
             </ul>
         </div>

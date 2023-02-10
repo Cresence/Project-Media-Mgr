@@ -43,7 +43,7 @@ import ExternalApi from "./components/ExternalApi/ExternalApi"
 // });
 
 function App() {
-    const { loading } = useAuth0();
+    const { loading, user } = useAuth0();
     if (loading) {
       return <Loading />;
     }
@@ -61,8 +61,8 @@ function App() {
           <Route exact path="/articles/categories/:id" component={PostAlt} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute exact path="/external-api" component={ExternalApi} />
-          <PrivateRoute exact path="/admin/news" component={NewsPost} />} />
-          <PrivateRoute exact path="/admin/slider" component={Sliders} />} />
+          <PrivateRoute exact path="/admin/news" component={NewsPost} props={user} />
+          <PrivateRoute exact path="/admin/slider" component={Sliders} />
           <PrivateRoute exact path="/sliders/:id" component={UpdateSlider} />
           <PrivateRoute exact path="/articles/:id" component={UpdatePost} />
           <Route component={NoMatch} />

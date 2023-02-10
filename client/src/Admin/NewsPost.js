@@ -6,9 +6,6 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Mainheading } from "../components/Mainheading"
 import axios from 'axios';
-// import { Cloud9 } from "aws-sdk";
-// import { userInfo } from "os";
-// import RichTextEditor from "../components/Quill/Quill"
 
 class NewsPost extends Component {
   state = {
@@ -39,7 +36,7 @@ class NewsPost extends Component {
   componentDidMount() {
     this.loadPosts();
     // this.loadImage();
-    this.props.userInfo ? this.setState({ author: this.props.userInfo.name, author_photo: this.props.userInfo.picture }) : console.log('User not logged in...?');
+    this.props.userInfo ? this.setState({ author: this.props.userInfo.name, author_photo: this.props.userInfo.picture }) : console.log(`User not logged in...?\nProps Details: ${this.props.userInfo}`);
   }
 
   loadImage = () => {

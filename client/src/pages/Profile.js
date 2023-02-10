@@ -3,9 +3,6 @@ import React from "react";
 import { useAuth0 } from "../react-auth0-wrapper.js";
 import Loading from "../components/Loading/Loading"
 
-// var keys = require('../keys');
-
-
 const Profile = () => {
   const { loading, user } = useAuth0();
 
@@ -25,7 +22,6 @@ const Profile = () => {
           
           <h2 className="text-color-blue">{user.name}</h2>
           <h6>{user.email === user.name ? null : <p>{user.email}</p>}</h6>
-          {/* <code>{JSON.stringify(user, null, 2)}</code> */}
           </div>
       </div>
       </div>
