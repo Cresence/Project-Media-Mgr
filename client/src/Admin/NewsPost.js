@@ -6,6 +6,10 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Mainheading } from "../components/Mainheading";
 import axios from 'axios';
+import { useAuth0 } from "../react-auth0-wrapper.js";
+import Loading from "../components/Loading/Loading"
+
+
 
 class NewsPost extends Component {
   state = {
@@ -35,8 +39,7 @@ class NewsPost extends Component {
 
   componentDidMount() {
     this.loadPosts();
-    // this.loadImage();
-    this.props.userInfo ? this.setState({ author: this.props.userInfo.name, author_photo: this.props.userInfo.picture }) : console.log(`User not logged in...?\nProps Details: ${this.props.userInfo}`);
+    this.user ? this.setState({ author: this.props.user.name, author_photo: this.props.user.picture }) : console.log(`User not logged in...?\nProps Details: ${this.props.user}`);
   }
 
   loadImage = () => {
@@ -142,8 +145,14 @@ class NewsPost extends Component {
     if (redirect) {
       return <Redirect to ='/admin/news' />;
     }
+    const { loading, user } = useAuth0();
 
-    const styles = {
+    if (loading || !user) {
+      return (
+        <Loading />
+      );
+    }
+      const styles = {
       textStyle: {
         color: "#000000"
       },
