@@ -53,7 +53,7 @@ app.post('/upload', (req, res) => {
 });
 
 // Define middleware that validates incoming bearer tokens
-// using JWKS from dev-2pm3nnjy.auth0.com
+// using JWKS from Auth0 site
 const checkJwt = expressjwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
