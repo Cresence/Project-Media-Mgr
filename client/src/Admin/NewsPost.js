@@ -57,7 +57,7 @@ class NewsPost extends Component {
   loadPosts = () => {
     API.getPosts()
       .then(res =>
-        this.setState({ posts: res.data, news_title: "", category: "", description: "",date: "", filename: "Choose File", messagestatus:"none"  })
+        !res ? this.setState({ posts: [], news_title: "", category: "", description: "",date: "", filename: "Choose File", messagestatus:"none"  }) : this.setState({ posts: res.data, news_title: "", category: "", description: "",date: "", filename: "Choose File", messagestatus:"none"  })
       )
       .catch(err => console.log(err));
   };

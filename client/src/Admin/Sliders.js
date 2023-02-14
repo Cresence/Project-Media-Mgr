@@ -53,7 +53,7 @@ class Sliders extends Component {
 
   loadSliders = () => {
     API.getSliders()
-      .then(res => !res ? this.setState({ sliders: null, title: "", description: "", linkTo: "",date: "", filename: "Choose File",messagestatus:"none"  })
+      .then(res => !res ? this.setState({ sliders: [], title: "", description: "", linkTo: "",date: "", filename: "Choose File",messagestatus:"none"  })
       : this.setState({ sliders: res.data, title: "", description: "", linkTo: "",date: "", filename: "Choose File",messagestatus:"none"  })
       )
       .catch(err => console.log(err));

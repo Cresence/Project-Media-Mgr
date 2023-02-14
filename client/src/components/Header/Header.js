@@ -17,7 +17,7 @@ class Header extends Component {
   loadSliders = () => {
     API.getSliders()
       .then(res =>
-        this.setState({ sliders: res.data, title: "", description: "", linkTo: "",date: ""})
+        !res ? this.setState({ sliders: [], title: "", description: "", linkTo: "",date: ""}) : this.setState({ sliders: res.data, title: "", description: "", linkTo: "",date: ""})
       )
       .catch(err => console.log(err));
   };
