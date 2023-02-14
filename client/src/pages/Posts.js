@@ -61,7 +61,7 @@ loadData = () => {
                                           hasMore={this.state.hasMore}
                                           loader={<h4>Loading...</h4>}
                                         >
-                                          {postData ? filterItems(postData, searchQuery).map(element => (
+                                          {[...postData] ? filterItems(postData, searchQuery).map(element => (
                                         <MovieCard
                                         Title={element.news_title}
                                         imdbID={element._id}
