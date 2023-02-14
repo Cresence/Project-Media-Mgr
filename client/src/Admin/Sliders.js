@@ -53,8 +53,8 @@ class Sliders extends Component {
 
   loadSliders = () => {
     API.getSliders()
-      .then(res =>
-        this.setState({ sliders: res.data, title: "", description: "", linkTo: "",date: "", filename: "Choose File",messagestatus:"none"  })
+      .then(res => !res ? this.setState({ sliders: null, title: "", description: "", linkTo: "",date: "", filename: "Choose File",messagestatus:"none"  })
+      : this.setState({ sliders: res.data, title: "", description: "", linkTo: "",date: "", filename: "Choose File",messagestatus:"none"  })
       )
       .catch(err => console.log(err));
   };
@@ -237,7 +237,9 @@ class Sliders extends Component {
           <Col size="md-6 sm-12">
             <Mainheading color="dark">Most Recent Slider List</Mainheading>
             
-            {this.state.sliders.length ? (
+            {!this.state.sliders.length ? (
+              <h3>No Results to Display</h3>
+            ) : (
               <List>
                 {this.state.sliders.map(slider => (
                 <ListItem key={slider._id}>
@@ -257,9 +259,7 @@ class Sliders extends Component {
                   </ListItem>
                 ))}
               </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+            ) };
           </Col>
         </div>
        
