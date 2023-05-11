@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const { expressjwt } = require('express-jwt');
 const jwksRsa = require("jwks-rsa");
 require('dotenv').config();
+const path = require('path');
 
 
 // Define Cloudinary config (dotenv)

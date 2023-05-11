@@ -18,7 +18,7 @@ const Profile = () => {
       <div  className="row admin-content-box py-5">
         <div className="col-sm-12">
           <div className="profile-box text-center">
-            <img src={user.picture} alt="Profile" />
+            <img src={user.picture ? user.picture : null} alt="Profile" />
           
           <h2 className="text-color-blue">{user.name}</h2>
           <h6>{user.email === user.name ? null : <p>{user.email}</p>}</h6>
